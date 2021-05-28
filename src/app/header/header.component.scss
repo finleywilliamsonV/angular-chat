@@ -1,0 +1,11 @@
+
+
+@use 'base';
+
+.brand {
+    color: white;
+
+    &:hover {
+        color: base.$lilac;
+    }
+}
