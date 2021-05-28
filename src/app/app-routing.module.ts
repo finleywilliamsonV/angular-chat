@@ -1,7 +1,19 @@
+import { NewUserFormComponent } from './new-user-form/new-user-form.component';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+const routes: Routes = [
+    {
+        path: '', redirectTo: '/home', pathMatch: 'full',
+    },
+    {
+        path: 'home', component: WelcomePageComponent
+    },
+    {
+        path: 'user/new', component: NewUserFormComponent
+    }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
