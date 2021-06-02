@@ -10,12 +10,13 @@ export type DefaultUserName = {
 })
 export class GlobalVariableService {
 
-    private DEFAULT_USER_NAME_COUNT: number
-    private DEFAULT_USER_NAMES: DefaultUserName[]
+    private defaultUserNameCount: number
+    private defaultUserNames: DefaultUserName[]
+    private currentUserId: number
 
     constructor() {
-        this.DEFAULT_USER_NAME_COUNT = 0
-        this.DEFAULT_USER_NAMES = [
+        this.defaultUserNameCount = 0
+        this.defaultUserNames = [
             {
                 firstName: 'Jan',
                 lastName: 'Winkins'
@@ -37,18 +38,28 @@ export class GlobalVariableService {
                 lastName: 'Derry'
             }
         ]
+        this.currentUserId = 0
     }
 
     /**
      * Gets the next default user name
      */
     public getNextUserName(): DefaultUserName {
-        if (this.DEFAULT_USER_NAME_COUNT >= this.DEFAULT_USER_NAMES.length) {
-            this.DEFAULT_USER_NAME_COUNT = 0
+        if (this.defaultUserNameCount >= this.defaultUserNames.length) {
+            this.defaultUserNameCount = 0
         }
-        const returnName = this.DEFAULT_USER_NAMES[this.DEFAULT_USER_NAME_COUNT]
-        this.DEFAULT_USER_NAME_COUNT++
+        const returnName = this.defaultUserNames[this.defaultUserNameCount]
+        this.defaultUserNameCount++
         return returnName
+    }
+
+    /**
+     * Gets the next user id
+     */
+     public getNextUserId(): number {
+        const returnId: number = this.currentUserId
+        this.currentUserId++
+        return returnId
     }
 
 }

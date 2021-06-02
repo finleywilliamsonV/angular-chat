@@ -4,16 +4,19 @@ export class User {
     private _lastName: string
     private _password: string
     private _profilePicUrl: string
+    private _id: number
 
     constructor(
         firstName: string,
         lastName: string,
         password: string,
+        id: number,
         profilePicUrl?: string
     ) {
         this._firstName = firstName
         this._lastName = lastName
         this._password = password
+        this._id = id
         this._profilePicUrl = profilePicUrl || 'https://picsum.photos/200'
     }
 
@@ -29,6 +32,9 @@ export class User {
     }
     public get profilePicUrl(): string {
         return this._profilePicUrl
+    }
+    public get id(): number {
+        return this._id
     }
     public get fullName(): string {
         return `${this.firstName} ${this.lastName}`

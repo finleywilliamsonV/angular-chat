@@ -1,3 +1,4 @@
+import { GlobalVariableService } from './global-variable.service';
 import { Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { User } from '../objects/user';
@@ -11,27 +12,35 @@ export class UserService {
 
     public usersChanged: Subject<User[]>
 
-    constructor() {
+    constructor(
+        private globalVariableService: GlobalVariableService
+    ) {
         this._users = []
         this.usersChanged = new Subject<User[]>()
-        this._users.push(new User(
+        this.addUser(
             'Finley',
             'Williamson',
             '$cv2365'
-        ), new User(
+        )
+        this.addUser(
             'Kindie',
             'McPeason',
             '$cv2365'
-        ))
+        )
     }
 
-    public get users(): User[] {
+    public get users(): User[] {1
         return this._users.slice()
     }
 
-    addUser(newUser: User): void {
+    public addUser(firstName: string, lastName: string, password: string): void {
+        const newUser: User = new User(
+            firstName,
+            lastName,
+            password,
+            this.globalVariableService.getNextUserId()
+        )
         this._users.push(newUser)
         this.usersChanged.next(this.users)
-        console.log('this._users', this._users)
     }
 }

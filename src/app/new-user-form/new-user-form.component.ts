@@ -41,18 +41,14 @@ export class NewUserFormComponent implements OnInit {
      * Runs when the form is submitted
      */
     public onSubmit() {
-        console.log('Submitting!')
-        console.log('signupForm:', this.signupForm.form.value)
 
         const newUserData: UserFormData = this.signupForm.form.value as UserFormData
 
-        const newUser: User = new User(
+        this.userService.addUser(
             newUserData.firstName,
             newUserData.lastName,
             newUserData.password
         )
-
-        this.userService.addUser(newUser)
 
         this.router.navigate(['home'])
     }

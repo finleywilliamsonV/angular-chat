@@ -19,7 +19,6 @@ export class WelcomePageComponent implements OnInit {
 
     ngOnInit(): void {
         this.users = this.userService.users
-        console.log('this.userService.users', this.userService.users)
         this.usersChangedSub = this.userService.usersChanged.subscribe(
             (newUsers: User[]) => {
                 this.users = newUsers
@@ -28,7 +27,6 @@ export class WelcomePageComponent implements OnInit {
     }
 
     public get userCount(): string {
-        console.log('this.users.length', this.users.length)
         if (this.users.length === 0) {
             return 'No Users Found'
         } else if (this.users.length === 1) {
