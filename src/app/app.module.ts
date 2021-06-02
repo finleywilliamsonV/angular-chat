@@ -13,6 +13,11 @@ import { RequireNumberDirective } from './shared/require-number.directive';
 import { RequirePasswordMatchDirective } from './shared/require-password-match.directive';
 import { RequireSpecialCharacterDirective } from './shared/require-special-character.directive';
 import { XOrCheckComponent } from './shared/x-or-check/x-or-check.component';
+import { UserTileComponent } from './shared/display/user-tile/user-tile.component';
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
 
 @NgModule({
     declarations: [
@@ -25,9 +30,12 @@ import { XOrCheckComponent } from './shared/x-or-check/x-or-check.component';
         RequireNoRepeatingNumbersDirective,
         RequirePasswordMatchDirective,
         XOrCheckComponent,
-        PasswordReqLiComponent
+        PasswordReqLiComponent,
+        UserTileComponent
     ],
     imports: [
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFirestoreModule,
         BrowserModule,
         AppRoutingModule,
         FormsModule

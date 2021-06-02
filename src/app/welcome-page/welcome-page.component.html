@@ -3,8 +3,21 @@
         <h1 class="display-3">Welcome!</h1>
         <p class="lead">{{ userCount }}</p>
         <hr class="my-2">
+        <div>
+            <div class="row">
+                <div *ngFor="let user of users" class="col-xs-4">
+                    <user-tile [user]="user"></user-tile>
+                </div>
+            </div>
+            <hr>
+        </div>
         <p class="lead">
-            <a class="btn btn-primary btn-lg" routerLink="/user/new" role="button">Create a New User</a>
+            <a
+                class="btn btn-primary btn-lg"
+                routerLink="/user/new"
+                role="button">
+                Create a New User
+            </a>
         </p>
     </div>
 </div>
