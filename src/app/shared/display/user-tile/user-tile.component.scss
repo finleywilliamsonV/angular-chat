@@ -1,0 +1,15 @@
+@use 'base';
+
+.card {
+    border: base.$tangerine 3px solid;
+    background-color: base.$palePink;
+    margin: 20px
+}
+
+.fa-user {
+    color: base.$tangerine;
+}
+
+.card-img-top {
+    padding-top: 20px
+}

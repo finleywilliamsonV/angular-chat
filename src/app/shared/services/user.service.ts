@@ -17,7 +17,11 @@ export class UserService {
         this._users.push(new User(
             'Finley',
             'Williamson',
-            'asdf1234$'
+            '$cv2365'
+        ), new User(
+            'Kindie',
+            'McPeason',
+            '$cv2365'
         ))
     }
 

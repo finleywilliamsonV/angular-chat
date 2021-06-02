@@ -1,8 +1,9 @@
-import { UserService } from './../shared/services/user.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { DefaultUserName, GlobalVariableService } from './../shared/services/global-variable.service';
 import { NgForm } from '@angular/forms';
-import { User } from 'app/shared/objects/user';
 import { Router } from '@angular/router';
+import { User } from 'app/shared/objects/user';
+import { UserService } from './../shared/services/user.service';
 
 type UserFormData = {
     firstName: string,
@@ -21,36 +22,13 @@ export class NewUserFormComponent implements OnInit {
     @ViewChild('form')
     private signupForm: NgForm
 
-    private DEFAULT_USER_NAME_COUNT: number = 0
-    private DEFAULT_USER_NAMES: { firstName: string, lastName: string }[] = [
-        {
-            firstName: 'Jan',
-            lastName: 'Winkins'
-        },
-        {
-            firstName: 'Bob',
-            lastName: 'Spedis'
-        },
-        {
-            firstName: 'Lemon',
-            lastName: 'Beezer'
-        },
-        {
-            firstName: 'Stency',
-            lastName: 'Stilpo'
-        },
-        {
-            firstName: 'Cran',
-            lastName: 'Derry'
-        }
-    ]
-
     public password: string
     public showPassword: boolean
 
     constructor(
         private userService: UserService,
-        private router: Router
+        private router: Router,
+        private globalVariableService: GlobalVariableService
     ) {
         this.password = ''
         this.showPassword = false
@@ -66,7 +44,7 @@ export class NewUserFormComponent implements OnInit {
         console.log('Submitting!')
         console.log('signupForm:', this.signupForm.form.value)
 
-        const newUserData: UserFormData = this.signupForm.form.value
+        const newUserData: UserFormData = this.signupForm.form.value as UserFormData
 
         const newUser: User = new User(
             newUserData.firstName,
@@ -83,7 +61,7 @@ export class NewUserFormComponent implements OnInit {
      * Fills out the user form automatically
      */
     public patchDefaultUser(): void {
-        const defaultUserName = this.DEFAULT_USER_NAMES[this.DEFAULT_USER_NAME_COUNT]
+        const defaultUserName: DefaultUserName = this.globalVariableService.getNextUserName()
         const defaultUserData: UserFormData = {
             firstName: defaultUserName.firstName,
             lastName: defaultUserName.lastName,
@@ -91,6 +69,5 @@ export class NewUserFormComponent implements OnInit {
             passwordConfirmation: '$cv2365'
         }
         this.signupForm.form.setValue(defaultUserData)
-        this.DEFAULT_USER_NAME_COUNT++
     }
 }

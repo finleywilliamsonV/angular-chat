@@ -1,95 +1,150 @@
 <div class="container">
-    <form (ngSubmit)="onSubmit()" [requirePasswordMatch]="[password, passwordConfirmation]" #form="ngForm">
+    <div class="row">
 
-        <div id="formColumn" class="col-xs-12 mt-5">
+        <form
+            (ngSubmit)="onSubmit()"
+            [requirePasswordMatch]="[password, passwordConfirmation]"
+            #form="ngForm">
 
-            <div class="panel panel-primary">
+            <div
+                id="formColumn"
+                class="col-12 mt-5">
 
-                <div class="panel-heading text-center">
-                    <h3 class="panel-title">
+                <div class="panel panel-primary">
+
+                    <div class="panel-heading text-center">
+                        <h3 class="panel-title">
                         <a (click)="patchDefaultUser()">New User</a>
                     </h3>
-                </div>
+                    </div>
 
-                <div class="panel-body mt-4">
-                    <div class="form-group">
-                        <div class="row">
+                    <div class="panel-body mt-4">
+                        <div class="form-group">
+                            <div class="row">
 
-                            <div class="col-sm-12 col-md-6">
-                                <label for="firstNameInput">First Name:</label>
-                                <input id="firstNameInput" class="form-control" name="firstName" type="text"
-                                    placeholder="Johnifer" required ngModel>
+                                <div class="col-sm-12 col-md-6">
+                                    <label for="firstNameInput">First Name:</label>
+                                    <input
+                                        id="firstNameInput"
+                                        class="form-control"
+                                        name="firstName"
+                                        type="text"
+                                        placeholder="Johnifer"
+                                        required
+                                        ngModel>
+                                </div>
+
+                                <div class="col-sm-12 col-md-6">
+                                    <label for="lastNameInput">Last Name:</label>
+                                    <input
+                                        id="lastNameInput"
+                                        class="form-control"
+                                        name="lastName"
+                                        type="text"
+                                        placeholder="Sheepis"
+                                        required
+                                        ngModel>
+                                </div>
                             </div>
+                        </div>
 
-                            <div class="col-sm-12 col-md-6">
-                                <label for="lastNameInput">Last Name:</label>
-                                <input id="lastNameInput" class="form-control" name="lastName" type="text"
-                                    placeholder="Sheepis" required ngModel>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+
+                            <ul id="passwordRequirements">
+                                <password-req-li [error]="!password.value || password.errors?.minlength">
+                                    At least 6
+                                characters
+                                </password-req-li>
+                                <password-req-li [error]="password.errors?.numberNotFound">At least 1 number</password-req-li>
+                                <password-req-li [error]="password.errors?.specialCharacterNotFound">
+                                    At least 1 special
+                                character
+                                </password-req-li>
+                                <password-req-li [error]="password.errors?.repeatingNumbersFound">
+                                    No repeating numbers (4 or
+                                more)
+                                </password-req-li>
+                            </ul>
+
+                            <div class="input-group">
+                                <input
+                                    id="password"
+                                    class="form-control"
+                                    name="password"
+                                    placeholder="********"
+                                    [type]="showPassword ? 'text' : 'password'"
+                                    required
+                                    minlength="6"
+                                    requireNumber
+                                    requireSpecialCharacter
+                                    requireNoRepeatingNumbers
+                                    #password="ngModel"
+                                    ngModel>
+                                <span class="input-group-btn">
+
+                                <button
+                                        class="btn btn-primary password-visibility-toggle"
+                                        (click)="showPassword = !showPassword"
+                                        [title]="showPassword ? 'Hide Password' : 'Show Password'"
+                                        [disabled]="!password.value"
+                                        type="button"><i
+                                            *ngIf="!showPassword"
+                                            class="far fa-eye"></i><i
+                                            *ngIf="showPassword"
+                                            class="far fa-eye-slash"></i>
+                                    </button>
+                            </span>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="password">Password:</label>
-
-                        <ul id="passwordRequirements">
-                            <password-req-li [error]="!password.value || password.errors?.minlength">At least 6
-                                characters</password-req-li>
-                            <password-req-li [error]="password.errors?.numberNotFound">At least 1 number
-                            </password-req-li>
-                            <password-req-li [error]="password.errors?.specialCharacterNotFound">At least 1 special
-                                character</password-req-li>
-                            <password-req-li [error]="password.errors?.repeatingNumbersFound">No repeating numbers (4 or
-                                more)</password-req-li>
-                        </ul>
-
-                        <div class="input-group">
-                            <input id="password" class="form-control" name="password" placeholder="********"
-                                [type]="showPassword ? 'text' : 'password'" required minlength="6" requireNumber
-                                requireSpecialCharacter requireNoRepeatingNumbers #password="ngModel" ngModel>
-                            <span class="input-group-btn">
-
-                                <button class="btn btn-primary password-visibility-toggle"
-                                    (click)="showPassword = !showPassword"
-                                    [title]="showPassword ? 'Hide Password' : 'Show Password'"
-                                    [disabled]="!password.value" type="button">
-                                    <i *ngIf="!showPassword" class="far fa-eye"></i>
-                                    <i *ngIf="showPassword" class="far fa-eye-slash"></i>
-                                </button>
+                        <div class="form-group">
+                            <label for="password">Confirm Password:</label>
+                            <div class="input-group">
+                                <input
+                                    id="passwordConfirmation"
+                                    class="form-control"
+                                    name="passwordConfirmation"
+                                    placeholder="********"
+                                    [type]="showPassword ? 'text' : 'password'"
+                                    required
+                                    #passwordConfirmation="ngModel"
+                                    ngModel>
+                                <span class="input-group-btn">
+                                <button
+                                        class="btn btn-primary password-visibility-toggle"
+                                        (click)="showPassword = !showPassword"
+                                        [title]="showPassword ? 'Hide Password' : 'Show Password'"
+                                        [disabled]="!password.value"
+                                        type="button"><i
+                                            *ngIf="!showPassword"
+                                            class="far fa-eye"></i><i
+                                            *ngIf="showPassword"
+                                            class="far fa-eye-slash"></i>
+                                    </button>
                             </span>
+                            </div>
+                            <div
+                                id="passwordRequirements"
+                                class="mt-2"
+                                *ngIf="passwordConfirmation.touched && form.errors?.doesNotMatch">
+                                <p class="red">Passwords must match</p>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="password">Confirm Password:</label>
-                        <div class="input-group">
-                            <input id="passwordConfirmation" class="form-control" name="passwordConfirmation"
-                                placeholder="********" [type]="showPassword ? 'text' : 'password'" required
-                                #passwordConfirmation="ngModel" ngModel>
-                            <span class="input-group-btn">
-                                <button class="btn btn-primary password-visibility-toggle"
-                                    (click)="showPassword = !showPassword"
-                                    [title]="showPassword ? 'Hide Password' : 'Show Password'"
-                                    [disabled]="!password.value" type="button">
-                                    <i *ngIf="!showPassword" class="far fa-eye"></i>
-                                    <i *ngIf="showPassword" class="far fa-eye-slash"></i>
+                        <div class="panel-footer">
+                            <div class="text-right">
+                                <button
+                                    class="btn btn-success"
+                                    type="submit"
+                                    [disabled]="!form.valid">
+                                    Submit
                                 </button>
-                            </span>
-                        </div>
-                        <div id="passwordRequirements" class="mt-2" *ngIf="passwordConfirmation.touched && form.errors?.doesNotMatch">
-                            <p class="red">Passwords must match</p>
-                        </div>
-                    </div>
-
-                    <div class="panel-footer">
-                        <div class="text-right">
-                            <button class="btn btn-success" type="submit" [disabled]="!form.valid">
-                                Submit
-                            </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>

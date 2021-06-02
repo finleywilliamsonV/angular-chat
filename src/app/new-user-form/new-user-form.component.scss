@@ -2,7 +2,11 @@
 
 .panel-title a {
     &:hover {
-        color: base.$lilac;
+        color: base.$tangerine;
         cursor: pointer;
     }
+}
+
+.btn.btn-primary {
+    height: 38px;
 }
