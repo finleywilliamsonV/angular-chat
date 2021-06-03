@@ -1,30 +1,34 @@
 import { User } from './../objects/user';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 // constants
 const MOCK_SERVER_CALL_LENGTH: number = 1500
 
+/**
+ * Auth Service Class
+ */
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
 
     // member vars
-    private _userAuthorized: boolean
     private _authorizedUser: User
+    private _userAuthorization: Subject<User>
 
     /**
      * Constructor
      */
     constructor() {
-        this._userAuthorized = false
+        this._userAuthorization = new Subject<User>()
     }
 
     /**
-     * Attempts to authorize a user
+     * Attempts to authorize a user.
      * @param user 
      * @param password 
-     * @returns 
+     * @returns Promise -> boolean
      */
     public async authorizeUser(user: User, password: string): Promise<boolean> {
 
@@ -35,15 +39,21 @@ export class AuthService {
         if (user.password === password) {
 
             // set as authorized user
-            this._userAuthorized = true
             this._authorizedUser = user
+
+            // push to the subject
+            this._userAuthorization.next(this._authorizedUser)
+
+            // return success
             return true
         }
+
+        // return failure
         return false
     }
 
     /**
-     * Creates a mock server call taking a given amount of time
+     * Creates a mock server call taking a given amount of time.
      * @param timeoutLength time in ms
      * @returns Promise -> void
      */

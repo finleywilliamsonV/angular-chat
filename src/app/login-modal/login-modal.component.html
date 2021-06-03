@@ -1,7 +1,7 @@
 <div class="modal-header">
     <h4
         class="modal-title"
-        id="modal-basic-title">Login</h4>
+        id="modal-basic-title">Log In</h4>
     <button
         type="button"
         class="close"
@@ -10,10 +10,12 @@
     </button>
 </div>
 <div
-    class="modal-body"
+    class="modal-body pb-0"
     ngbAutofocus>
-    <form #form="ngForm">
-        <div class="form-group">
+    <form
+        #form="ngForm"
+        class="mb-0">
+        <div class="form-group mb-0">
             <h5>{{ user.fullName }}</h5>
             <div class="input-group">
                 <input
@@ -29,18 +31,18 @@
                     #password="ngModel">
             </div>
             <p
-                *ngIf="passwordIncorrect"
-                class="incorrect-password red">Incorrect Password, Please Try Again.</p>
+                class="incorrect-password red pb-0"
+                [ngStyle]="{'visibility': passwordIncorrect ? 'inherit' : 'hidden'}">Incorrect Password, Please Try Again.</p>
         </div>
     </form>
 </div>
 <div class="modal-footer">
     <button
         type="button"
-        class="btn btn-dark"
+        class="btn btn-success"
         (click)="attemptLogin(password)"
         [disabled]="!form.valid">
-        Submit
         <spinner [showSpinner]="attemptingLogin"></spinner>
+        Submit
     </button>
 </div>
