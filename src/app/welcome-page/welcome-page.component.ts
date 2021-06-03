@@ -1,5 +1,6 @@
+import { AuthService } from './../shared/services/auth.service';
 import { UserService } from './../shared/services/user.service';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from 'app/shared/objects/user';
 import { Subscription } from 'rxjs';
 
@@ -10,13 +11,25 @@ import { Subscription } from 'rxjs';
 })
 export class WelcomePageComponent implements OnInit {
 
+    // member vars
     public users: User[]
     private usersChangedSub: Subscription
+    public authorizedUser: User
+    private userAuthorizationSub: Subscription
 
+    /**
+     * Constuctor
+     * @param userService
+     * @param authService
+     */
     constructor(
-        private userService: UserService
+        private userService: UserService,
+        private authService: AuthService
     ) { }
 
+    /**
+     * On Init Lifecycle Hook 
+     */
     ngOnInit(): void {
         this.users = this.userService.users
         this.usersChangedSub = this.userService.usersChanged.subscribe(
@@ -24,9 +37,35 @@ export class WelcomePageComponent implements OnInit {
                 this.users = newUsers
             }
         )
+
+        // subscribe to user authorization
+        this.userAuthorizationSub = this.authService.userAuthorization.subscribe(
+            (authorizedUser: User) => {
+                this.authorizedUser = authorizedUser
+            }
+        )
+
+        // log in the first user
+        this.authService.authorizeUser(this.users[0], '$cv2365')
     }
 
-    public get userCount(): string {
+    /**
+     * Returns the welcome string for the title of the page
+     * @returns string
+     */
+    public get welcomeString(): string {
+        if (this.authorizedUser) {
+            return `Welcome, ${this.authorizedUser.firstName}!`
+        } else {
+            return 'Welcome!'
+        }
+    }
+
+    /**
+     * Returns the string representation of the user count
+     * @returns string
+     */
+    public get userCountString(): string {
         if (this.users.length === 0) {
             return 'No Users Found'
         } else if (this.users.length === 1) {
@@ -35,5 +74,4 @@ export class WelcomePageComponent implements OnInit {
             return `${this.users.length} Users Found` 
         }
     }
-
 }

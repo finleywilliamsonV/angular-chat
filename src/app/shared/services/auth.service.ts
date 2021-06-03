@@ -14,7 +14,7 @@ const MOCK_SERVER_CALL_LENGTH: number = 1500
 export class AuthService {
 
     // member vars
-    private _authorizedUser: User
+    private _authorizedUser: User | undefined
     private _userAuthorization: Subject<User>
 
     /**
@@ -53,6 +53,23 @@ export class AuthService {
     }
 
     /**
+     * 
+     */
+    public logOutUser(): void {
+        
+        // check if a user is authorizedk
+        if (!this.authorizedUser) {
+            console.error('Error: Attempting to log out when no user logged in!')
+        }
+        
+        // log out the user
+        else {
+            this._authorizedUser = undefined
+            this._userAuthorization.next(this._authorizedUser)
+        }
+    }
+
+    /**
      * Creates a mock server call taking a given amount of time.
      * @param timeoutLength time in ms
      * @returns Promise -> void
@@ -65,5 +82,25 @@ export class AuthService {
                 }, timeoutLength)
             }
         )
+    }
+
+    /**
+     * -------------------------------------------------- GETTERS
+     */
+    
+    /**
+     * Returns the authorized user
+     * @returns User
+     */
+    public get authorizedUser(): User | undefined {
+        return this._authorizedUser
+    }
+
+    /**
+     * Returns the user authorization subject
+     * @returns Subject
+     */
+    public get userAuthorization(): Subject<User> {
+        return this._userAuthorization
     }
 }

@@ -23,7 +23,7 @@ export class UserService {
             '$cv2365'
         )
         this.addUser(
-            'Kindie',
+            'Kimbie',
             'McPeason',
             '$cv2365'
         )

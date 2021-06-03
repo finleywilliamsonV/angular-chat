@@ -1,5 +1,18 @@
 <nav class="navbar nabbar-dark bg-dark">
-    <a href="#" class="navbar-brand h1 brand">
+    <a
+        href="#"
+        class="navbar-brand h1 white tangerine-hover">
         SheeperText
     </a>
+
+    <div
+        *ngIf="authorizedUser"
+        class="float-right white">
+        {{authorizedUser.fullName}}
+        <a
+            (click)="logOutUser()"
+            class="tangerine-hover">
+            (Log Out)
+        </a>
+    </div>
 </nav>

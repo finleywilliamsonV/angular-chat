@@ -2,10 +2,12 @@
 
 @use 'base';
 
-.brand {
+.tangerine-hover {
+
     color: white;
 
     &:hover {
         color: base.$tangerine;
+        cursor: pointer;
     }
 }

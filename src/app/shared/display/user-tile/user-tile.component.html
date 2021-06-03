@@ -2,11 +2,23 @@
     <i class="fas fa-user fa-3x card-img-top"></i>
     <div class="card-body">
         <h5 class="card-title">{{user.fullName}}</h5>
+
+        <!-- Log In Button -->
         <button
-            (click)="openLoginModal()"
-            class="btn btn-dark">
+            class="btn btn-dark"
+            *ngIf="!currentUserAuthorized"
+            (click)="openLoginModal()">
             <i class="fas fa-sign-in-alt"></i>
             Log In
+        </button>
+
+        <button
+            class="btn btn-dark"
+            *ngIf="currentUserAuthorized"
+            (click)="openLoginModal()"
+            disabled>
+            <i class="fas fa-sign-in-alt"></i>
+            Logged In
         </button>
     </div>
 </div>

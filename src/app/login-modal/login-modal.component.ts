@@ -6,6 +6,9 @@ import { ModalBindings } from 'app/shared/models/modal.model';
 import { NgModel } from '@angular/forms';
 import { Router } from '@angular/router';
 
+// constants
+const LOGIN_SUCCESS_MESSAGE_TIMEOUT: number = 1500
+
 /**
  * Property Bindings for the Login Modal
  */
@@ -28,7 +31,8 @@ export class LoginModalComponent implements OnInit {
 
     // member variables
     public attemptingLogin: boolean
-    public passwordIncorrect: boolean
+    public showPasswordIncorrect: boolean
+    public showLoginSuccess: boolean
 
     /**
      * Constructor
@@ -40,7 +44,8 @@ export class LoginModalComponent implements OnInit {
         private router: Router
     ) {
         this.attemptingLogin = false
-        this.passwordIncorrect = false
+        this.showPasswordIncorrect = false
+        this.showLoginSuccess = false
     }
 
     /**
@@ -62,6 +67,9 @@ export class LoginModalComponent implements OnInit {
      * @returns Promise
      */
     public async attemptLogin(passwordInput: NgModel): Promise<void> {
+
+        // reset the incorrect password boolean
+        this.showPasswordIncorrect = false
         
         // store the password from the input
         const password: string = passwordInput.value
@@ -73,9 +81,12 @@ export class LoginModalComponent implements OnInit {
 
         // handle success/failure
         if (loginSuccessful) {
-            this.modalInstance.close()
+            this.showLoginSuccess = true
+            setTimeout(() => {
+                this.modalInstance.close()
+            }, LOGIN_SUCCESS_MESSAGE_TIMEOUT)
         } else {
-            this.passwordIncorrect = true
+            this.showPasswordIncorrect = true
         }
     }
 }

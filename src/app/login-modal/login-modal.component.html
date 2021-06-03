@@ -1,3 +1,4 @@
+<!-- modal header -->
 <div class="modal-header">
     <h4
         class="modal-title"
@@ -9,6 +10,8 @@
         ×
     </button>
 </div>
+
+<!-- modal body -->
 <div
     class="modal-body pb-0"
     ngbAutofocus>
@@ -17,6 +20,8 @@
         class="mb-0">
         <div class="form-group mb-0">
             <h5>{{ user.fullName }}</h5>
+
+            <!-- password input -->
             <div class="input-group">
                 <input
                     id="password"
@@ -24,24 +29,39 @@
                     placeholder="Password"
                     name="password"
                     type="password"
+                    (keyup.enter)="attemptLogin(password)"
                     password
                     minlength="6"
                     required
                     ngModel
                     #password="ngModel">
             </div>
-            <p
-                class="incorrect-password red pb-0"
-                [ngStyle]="{'visibility': passwordIncorrect ? 'inherit' : 'hidden'}">Incorrect Password, Please Try Again.</p>
+
+            <!-- incorrect password message -->
+            <div *ngIf="!showLoginSuccess">
+                <p
+                    class="italic red pb-0"
+                    [ngStyle]="{'visibility': showPasswordIncorrect ? 'inherit' : 'hidden'}">Incorrect Password, Please Try Again.</p>
+            </div>
+
+            <!-- login success message -->
+            <div *ngIf="showLoginSuccess">
+                <p
+                    class="italic green pb-0"
+                    [ngStyle]="{'visibility': showLoginSuccess ? 'inherit' : 'hidden'}">User Login Successful!</p>
+            </div>
+
         </div>
     </form>
 </div>
+
+<!-- modal footer -->
 <div class="modal-footer">
     <button
         type="button"
         class="btn btn-success"
         (click)="attemptLogin(password)"
-        [disabled]="!form.valid">
+        [disabled]="!form.valid || attemptingLogin || showLoginSuccess">
         <spinner [showSpinner]="attemptingLogin"></spinner>
         Submit
     </button>

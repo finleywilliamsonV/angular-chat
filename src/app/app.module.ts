@@ -8,10 +8,10 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { NewUserFormComponent } from './new-user-form/new-user-form.component';
 import { FormsModule } from '@angular/forms';
 import { PasswordReqLiComponent } from './shared/password-req-li/password-req-li.component';
-import { RequireNoRepeatingNumbersDirective } from './shared/require-no-repeating-numbers.directive';
-import { RequireNumberDirective } from './shared/require-number.directive';
-import { RequirePasswordMatchDirective } from './shared/require-password-match.directive';
-import { RequireSpecialCharacterDirective } from './shared/require-special-character.directive';
+import { RequireNoRepeatingNumbersDirective } from './shared/directives/require-no-repeating-numbers.directive';
+import { RequireNumberDirective } from './shared/directives/require-number.directive';
+import { RequirePasswordMatchDirective } from './shared/directives/require-password-match.directive';
+import { RequireSpecialCharacterDirective } from './shared/directives/require-special-character.directive';
 import { XOrCheckComponent } from './shared/x-or-check/x-or-check.component';
 import { UserTileComponent } from './shared/display/user-tile/user-tile.component';
 
