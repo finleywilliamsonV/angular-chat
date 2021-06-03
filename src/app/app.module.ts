@@ -7,12 +7,12 @@ import { HeaderComponent } from './header/header.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { NewUserFormComponent } from './new-user-form/new-user-form.component';
 import { FormsModule } from '@angular/forms';
-import { PasswordReqLiComponent } from './shared/password-req-li/password-req-li.component';
+import { PasswordReqLiComponent } from './shared/display/password-req-li/password-req-li.component';
 import { RequireNoRepeatingNumbersDirective } from './shared/directives/require-no-repeating-numbers.directive';
 import { RequireNumberDirective } from './shared/directives/require-number.directive';
 import { RequirePasswordMatchDirective } from './shared/directives/require-password-match.directive';
 import { RequireSpecialCharacterDirective } from './shared/directives/require-special-character.directive';
-import { XOrCheckComponent } from './shared/x-or-check/x-or-check.component';
+import { XOrCheckComponent } from './shared/display/x-or-check/x-or-check.component';
 import { UserTileComponent } from './shared/display/user-tile/user-tile.component';
 
 import { AngularFireModule } from '@angular/fire';
@@ -21,6 +21,7 @@ import { environment } from '../environments/environment';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginModalComponent } from './login-modal/login-modal.component';
 import { SpinnerComponent } from './shared/display/spinner/spinner.component';
+import { HideAndRetainSpaceDirective } from './shared/directives/hide-and-retain-space.directive';
 
 @NgModule({
     declarations: [
@@ -36,7 +37,8 @@ import { SpinnerComponent } from './shared/display/spinner/spinner.component';
         PasswordReqLiComponent,
         UserTileComponent,
         LoginModalComponent,
-        SpinnerComponent
+        SpinnerComponent,
+        HideAndRetainSpaceDirective
     ],
     imports: [
         AngularFireModule.initializeApp(environment.firebase),
@@ -45,6 +47,9 @@ import { SpinnerComponent } from './shared/display/spinner/spinner.component';
         AppRoutingModule,
         FormsModule,
         NgbModule
+    ],
+    exports: [
+        HideAndRetainSpaceDirective
     ],
     providers: [],
     bootstrap: [AppComponent]

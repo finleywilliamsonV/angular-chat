@@ -44,9 +44,6 @@ export class WelcomePageComponent implements OnInit {
                 this.authorizedUser = authorizedUser
             }
         )
-
-        // log in the first user
-        this.authService.authorizeUser(this.users[0], '$cv2365')
     }
 
     /**

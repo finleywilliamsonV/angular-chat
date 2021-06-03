@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core'
 @Component({
     selector: 'x-or-check',
     templateUrl: './x-or-check.component.html',
-    styleUrls: ['./x-or-check.component.css']
+    styleUrls: ['./x-or-check.component.scss']
 })
 export class XOrCheckComponent implements OnInit {
 

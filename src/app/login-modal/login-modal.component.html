@@ -41,14 +41,14 @@
             <div *ngIf="!showLoginSuccess">
                 <p
                     class="italic red pb-0"
-                    [ngStyle]="{'visibility': showPasswordIncorrect ? 'inherit' : 'hidden'}">Incorrect Password, Please Try Again.</p>
+                    [hideAndRetainSpace]="!showPasswordIncorrect">Incorrect Password, Please Try Again.</p>
             </div>
 
             <!-- login success message -->
             <div *ngIf="showLoginSuccess">
                 <p
                     class="italic green pb-0"
-                    [ngStyle]="{'visibility': showLoginSuccess ? 'inherit' : 'hidden'}">User Login Successful!</p>
+                    [hideAndRetainSpace]="!showLoginSuccess">User Login Successful!</p>
             </div>
 
         </div>

@@ -116,7 +116,7 @@
                         <div
                             id="passwordRequirements"
                             class="mt-2"
-                            *ngIf="passwordConfirmation.touched && form.errors?.doesNotMatch">
+                            [hideAndRetainSpace]="!passwordConfirmation.touched || !form.errors?.doesNotMatch">
                             <p class="red">Passwords must match</p>
                         </div>
                     </div>
