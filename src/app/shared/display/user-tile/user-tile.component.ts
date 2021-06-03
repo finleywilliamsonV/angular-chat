@@ -25,6 +25,9 @@ export class UserTileComponent implements OnInit {
     }
 
     public openLoginModal(): void {
-        this.modalLaunchService.open(LoginModalComponent)
+        this.modalLaunchService.open(LoginModalComponent, {
+            centered: true,
+            backdropClass: 'light-blue-background'
+        })
     }
 }

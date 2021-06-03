@@ -1,4 +1,4 @@
-import { ModalDismissReasons, NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDismissReasons, NgbActiveModal, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -10,9 +10,10 @@ export class LoginModalComponent implements OnInit {
 
     constructor(
         private modalService: NgbModal,
-        private modalInstanceService: NgbActiveModal
+        private modalInstanceService: NgbActiveModal,
+        private modalConfig: NgbModalConfig
     ) {
-        
+        console.log('modalConfig', modalConfig)
     }
 
     ngOnInit(): void {

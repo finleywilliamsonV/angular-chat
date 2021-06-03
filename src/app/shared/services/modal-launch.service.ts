@@ -1,4 +1,4 @@
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDismissReasons, NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -12,8 +12,9 @@ export class ModalLaunchService {
         private modalService: NgbModal
     ) { }
 
-    public async open(content: any) {
-        this.modalService.open(content).result
+    public async open(content: any, options?: NgbModalOptions) {
+        console.log('options', options)
+        this.modalService.open(content, options).result
         .then(
             (result: string) => {
                 this.closeResult = `Closed with: ${result}`

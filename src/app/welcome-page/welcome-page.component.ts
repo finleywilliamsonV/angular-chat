@@ -1,5 +1,5 @@
 import { UserService } from './../shared/services/user.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { User } from 'app/shared/objects/user';
 import { Subscription } from 'rxjs';
 
