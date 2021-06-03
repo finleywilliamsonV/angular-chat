@@ -29,7 +29,7 @@ export class UserService {
         )
     }
 
-    public get users(): User[] {1
+    public get users(): User[] {
         return this._users.slice()
     }
 
@@ -42,5 +42,14 @@ export class UserService {
         )
         this._users.push(newUser)
         this.usersChanged.next(this.users)
+    }
+
+    /**
+     * Gets the user with the given id
+     * @param id 
+     * @returns User
+     */
+    public getUserById(id: number): User {
+        return this._users[id]  // incomplete!!
     }
 }

@@ -28,7 +28,8 @@ export class UserTileComponent implements OnInit {
      */
     constructor(
         private modalLaunchService: ModalLaunchService,
-        private authService: AuthService
+        private authService: AuthService,
+        private router: Router
     ) {
         this.currentUserAuthorized = false
     }
@@ -67,6 +68,10 @@ export class UserTileComponent implements OnInit {
             },
             loginModalBindings
         )
+    }
+
+    public goToMessageCenter() {
+        this.router.navigate(['/messages', this.authorizedUser.id])
     }
 
     /**

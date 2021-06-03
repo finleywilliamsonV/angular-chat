@@ -4,7 +4,6 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
 import { ModalBindings } from 'app/shared/models/modal.model';
 import { NgModel } from '@angular/forms';
-import { Router } from '@angular/router';
 
 // constants
 const LOGIN_SUCCESS_MESSAGE_TIMEOUT: number = 1500
@@ -40,8 +39,7 @@ export class LoginModalComponent implements OnInit {
      */
     constructor(
         private modalInstance: NgbActiveModal,
-        private authService: AuthService,
-        private router: Router
+        private authService: AuthService
     ) {
         this.attemptingLogin = false
         this.showPasswordIncorrect = false

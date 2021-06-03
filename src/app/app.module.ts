@@ -22,6 +22,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginModalComponent } from './login-modal/login-modal.component';
 import { SpinnerComponent } from './shared/display/spinner/spinner.component';
 import { HideAndRetainSpaceDirective } from './shared/directives/hide-and-retain-space.directive';
+import { MessageCenterComponent } from './message-center/message-center.component';
 
 @NgModule({
     declarations: [
@@ -38,7 +39,8 @@ import { HideAndRetainSpaceDirective } from './shared/directives/hide-and-retain
         UserTileComponent,
         LoginModalComponent,
         SpinnerComponent,
-        HideAndRetainSpaceDirective
+        HideAndRetainSpaceDirective,
+        MessageCenterComponent
     ],
     imports: [
         AngularFireModule.initializeApp(environment.firebase),
