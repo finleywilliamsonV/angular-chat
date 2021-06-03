@@ -22,17 +22,23 @@
                     class="form-control"
                     placeholder="Password"
                     name="password"
-                    #password="ngModel"
-                    ngModel>
+                    type="password"
+                    password
+                    minlength="6"
+                    required
+                    ngModel
+                    #password="ngModel">
             </div>
+            <p *ngIf="passwordIncorrect" class="incorrect-password red">Incorrect Password, Please Try Again.</p>
         </div>
     </form>
 </div>
 <div class="modal-footer">
     <button
         type="button"
-        class="btn btn-outline-dark"
-        (click)="attemptLogin(password)">
+        class="btn btn-dark"
+        (click)="attemptLogin(password)"
+        [disabled]="!form.valid">
         Submit
     </button>
 </div>
