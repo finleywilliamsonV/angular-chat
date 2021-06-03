@@ -18,8 +18,8 @@ import { UserTileComponent } from './shared/display/user-tile/user-tile.componen
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
-import { LoginPageComponent } from './login-page/login-page.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoginModalComponent } from './login-modal/login-modal.component';
 
 @NgModule({
     declarations: [
@@ -34,7 +34,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         XOrCheckComponent,
         PasswordReqLiComponent,
         UserTileComponent,
-        LoginPageComponent
+        LoginModalComponent
     ],
     imports: [
         AngularFireModule.initializeApp(environment.firebase),
