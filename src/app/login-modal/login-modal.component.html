@@ -1,1 +1,38 @@
-<p>login-modal works!</p>
+<div class="modal-header">
+    <h4
+        class="modal-title"
+        id="modal-basic-title">Login</h4>
+    <button
+        type="button"
+        class="close"
+        (click)="cancel()">
+        ×
+    </button>
+</div>
+<div
+    class="modal-body"
+    ngbAutofocus>
+    <form
+    #form="ngForm">
+        <div class="form-group">
+            <h5>{{ user.fullName }}</h5>
+            <div class="input-group">
+                <input
+                    id="password"
+                    class="form-control"
+                    placeholder="Password"
+                    name="password"
+                    #password="ngModel"
+                    ngModel>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button
+        type="button"
+        class="btn btn-outline-dark"
+        (click)="attemptLogin(password)">
+        Submit
+    </button>
+</div>

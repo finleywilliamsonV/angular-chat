@@ -1,4 +1,4 @@
-import { LoginModalComponent } from './../../../login-modal/login-modal.component';
+import { LoginModalComponent, LoginModalBindings } from './../../../login-modal/login-modal.component';
 import { ModalLaunchService } from './../../services/modal-launch.service';
 
 import { Component, OnInit, Input } from '@angular/core';
@@ -16,18 +16,29 @@ export class UserTileComponent implements OnInit {
     public user: User
 
     constructor(
-        private router: Router,
-        private route: ActivatedRoute,
         private modalLaunchService: ModalLaunchService
     ) { }
 
     ngOnInit(): void {
     }
 
+    /**
+     * Opens the login modal
+     */
     public openLoginModal(): void {
-        this.modalLaunchService.open(LoginModalComponent, {
-            centered: true,
-            backdropClass: 'light-blue-background'
-        })
+
+        const loginModalBindings: LoginModalBindings = {
+            user: this.user
+        }
+
+        this.modalLaunchService.open(
+            LoginModalComponent,
+            {
+                centered: true,
+                backdropClass: 'background-baby-pink',
+                backdrop: 'static'
+            },
+            loginModalBindings
+        )
     }
 }
