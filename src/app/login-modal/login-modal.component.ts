@@ -6,7 +6,7 @@ import { ModalBindings } from 'app/shared/models/modal.model';
 import { NgModel } from '@angular/forms';
 
 // constants
-const LOGIN_SUCCESS_MESSAGE_TIMEOUT: number = 1500
+const LOGIN_SUCCESS_MESSAGE_TIMEOUT: number = 1000
 
 /**
  * Property Bindings for the Login Modal
