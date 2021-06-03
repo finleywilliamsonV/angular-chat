@@ -12,8 +12,7 @@
 <div
     class="modal-body"
     ngbAutofocus>
-    <form
-    #form="ngForm">
+    <form #form="ngForm">
         <div class="form-group">
             <h5>{{ user.fullName }}</h5>
             <div class="input-group">
@@ -29,7 +28,9 @@
                     ngModel
                     #password="ngModel">
             </div>
-            <p *ngIf="passwordIncorrect" class="incorrect-password red">Incorrect Password, Please Try Again.</p>
+            <p
+                *ngIf="passwordIncorrect"
+                class="incorrect-password red">Incorrect Password, Please Try Again.</p>
         </div>
     </form>
 </div>
@@ -40,5 +41,6 @@
         (click)="attemptLogin(password)"
         [disabled]="!form.valid">
         Submit
+        <spinner [showSpinner]="attemptingLogin"></spinner>
     </button>
 </div>

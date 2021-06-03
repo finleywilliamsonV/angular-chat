@@ -20,6 +20,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginModalComponent } from './login-modal/login-modal.component';
+import { SpinnerComponent } from './shared/display/spinner/spinner.component';
 
 @NgModule({
     declarations: [
@@ -34,7 +35,8 @@ import { LoginModalComponent } from './login-modal/login-modal.component';
         XOrCheckComponent,
         PasswordReqLiComponent,
         UserTileComponent,
-        LoginModalComponent
+        LoginModalComponent,
+        SpinnerComponent
     ],
     imports: [
         AngularFireModule.initializeApp(environment.firebase),

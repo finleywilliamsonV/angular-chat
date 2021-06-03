@@ -1,6 +1,9 @@
 import { User } from './../objects/user';
 import { Injectable } from '@angular/core';
 
+// constants
+const MOCK_SERVER_CALL_LENGTH: number = 1500
+
 @Injectable({
     providedIn: 'root'
 })
@@ -26,7 +29,7 @@ export class AuthService {
     public async authorizeUser(user: User, password: string): Promise<boolean> {
 
         // await mock server call
-        await this.mockServerCall(1000)
+        await this.mockServerCall(MOCK_SERVER_CALL_LENGTH)
 
         // check the password 
         if (user.password === password) {
