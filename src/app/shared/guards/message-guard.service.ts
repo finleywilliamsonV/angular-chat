@@ -2,6 +2,7 @@ import { AuthService } from './../services/auth.service';
 import { Injectable } from '@angular/core'
 import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router'
 import { Observable } from 'rxjs'
+import { isNil } from 'lodash';
 
 @Injectable({
     providedIn: 'root'
@@ -27,7 +28,7 @@ export class MessageGuardService implements CanActivate {
         const authorizedUser = this.authService.authorizedUser
 
         // check if message center for user is currently authorized
-        if(authorizedUser && routeId && authorizedUser.id === routeId) {
+        if(authorizedUser && !isNil(routeId) && authorizedUser.id === routeId) {
             return true
         }
         
