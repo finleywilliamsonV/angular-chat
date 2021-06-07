@@ -28,6 +28,10 @@ $palePink: #f7d0ca;
     border: 1px solid salmon;
 }
 
+.remove-top-border {
+    border-top: none;
+}
+
 .overflow-ellipses {
     text-overflow: ellipsis;
     white-space: nowrap;

@@ -1,19 +1,64 @@
-<div class="container-fluid">
+<div class="container-fluid mt-5">
     <div class="row">
-        <div class="col-4 border-orange">
-            <inbox-item
-                *ngFor="let message of userRecievedMessages"
-                [message]="message"
-                (click)="readMessage(message)">
-            </inbox-item>
+
+        <!-- left column -->
+        <div class="col-4">
+
+            <!-- navbar -->
+            <ul class="nav nav-pills  mb-2">
+                <li class="nav-item">
+                  <div
+                        class="nav-link"
+                        [class.active]="collectionTypeViewing === 'received'"
+                        (click)="collectionTypeViewing = 'received'">
+                        <i class="fas fa-inbox mr-1"></i>
+                        Inbox
+                    </div>
+                </li>
+                <li class="nav-item">
+                  <div
+                        class="nav-link"
+                        [class.active]="collectionTypeViewing === 'sent'"
+                        (click)="collectionTypeViewing = 'sent'">
+                        <i class="far fa-paper-plane mr-1"></i>
+                        Sent Messages
+                    </div>
+                </li>
+            </ul>
+
+            <!-- scrolling container -->
+            <div class="conatain-with-scrollbar pb-1">
+
+                <!-- inbox items -->
+                <inbox-item
+                    *ngFor="let message of collectionViewing; index as i"
+                    [message]="message"
+                    [messageView]="collectionTypeViewing"
+                    [firstItem]="i != 0"
+                    (click)="readMessage(message)">
+                </inbox-item>
+
+            </div>
         </div>
-        <div class="col-8 border-purple">
-            <div
-                class="mt-4"
-                *ngIf="currentMessage">
-                <p class="h3">{{ currentMessage.subject }}</p>
-                <p class="h5">From: {{ currentMessage.sender.name_lastFirst }}</p>
-                <p class="preserve-new-lines mt-4">{{ currentMessage.body }}</p>
+
+        <!-- right column -->
+        <div class="col-8">
+
+            <!-- new message button -->
+            <div class="height-40 mb-2 text-align-right">
+                <div class="btn btn-primary">
+                    <i class="far fa-envelope mr-1"></i>
+                    New Message
+                </div>
+            </div>
+
+            <div class="border-purple height-600">
+
+                <message-item
+                    *ngIf="currentMessage"
+                    [message]="currentMessage"
+                    [messageView]="collectionTypeViewing">
+                </message-item>
             </div>
         </div>
     </div>

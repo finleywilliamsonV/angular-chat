@@ -135,5 +135,50 @@ export class WelcomePageComponent implements OnInit {
             'Test Message 3',
             HIPSTER_IPSUM
         )
+
+        // add test messages from the first user to the second user
+        this.messageService.addMessage(
+            firstUser,
+            secondUser,
+            'Test Message 4',
+            LOREM_IPSUM
+        )
+
+        this.messageService.addMessage(
+            firstUser,
+            secondUser,
+            'Test Message 5',
+            CUPCAKE_IPSUM
+        )
+
+        this.messageService.addMessage(
+            firstUser,
+            secondUser,
+            'Test Message 6',
+            HIPSTER_IPSUM
+        )
+
+        
+        // add more test messages from first user to second user
+        this.messageService.addMessage(
+            secondUser,
+            firstUser,
+            'Test Message 7',
+            LOREM_IPSUM
+        )
+
+        this.messageService.addMessage(
+            secondUser,
+            firstUser,
+            'Test Message 8',
+            CUPCAKE_IPSUM
+        )
+
+        this.messageService.addMessage(
+            secondUser,
+            firstUser,
+            'Test Message 9',
+            HIPSTER_IPSUM
+        )
     }
 }

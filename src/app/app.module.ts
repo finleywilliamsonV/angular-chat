@@ -24,6 +24,7 @@ import { SpinnerComponent } from './shared/display/spinner/spinner.component';
 import { HideAndRetainSpaceDirective } from './shared/directives/hide-and-retain-space.directive';
 import { MessageCenterComponent } from './message-center/message-center.component';
 import { InboxItemComponent } from './message-center/inbox-item/inbox-item.component';
+import { MessageItemComponent } from './message-center/message-item/message-item.component';
 
 @NgModule({
     declarations: [
@@ -42,7 +43,8 @@ import { InboxItemComponent } from './message-center/inbox-item/inbox-item.compo
         SpinnerComponent,
         HideAndRetainSpaceDirective,
         MessageCenterComponent,
-        InboxItemComponent
+        InboxItemComponent,
+        MessageItemComponent
     ],
     imports: [
         AngularFireModule.initializeApp(environment.firebase),

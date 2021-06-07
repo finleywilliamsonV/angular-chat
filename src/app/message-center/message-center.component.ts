@@ -1,6 +1,6 @@
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-import { MessageService } from './../shared/services/message.service';
+import { MessageService, MessageViewOption } from './../shared/services/message.service';
 import { AuthService } from './../shared/services/auth.service';
 import { Message } from './../shared/objects/message';
 import { Component, OnInit } from '@angular/core';
@@ -18,7 +18,10 @@ export class MessageCenterComponent implements OnInit {
     public userRecievedMessages: Message[]
     public userSentMessages: Message[]
     public messagesChangedSub: Subscription
-    public currentMessage: Message
+    public currentMessage: Message | undefined
+
+    private _collectionTypeViewing: MessageViewOption
+    public collectionViewing: Message[]
 
     /**
      * Constructor
@@ -48,6 +51,9 @@ export class MessageCenterComponent implements OnInit {
                 this.updateMessagesForUser()
             }
         )
+
+        // set the default view to inbox
+        this.collectionTypeViewing = 'received'
     }
 
     /**
@@ -68,6 +74,28 @@ export class MessageCenterComponent implements OnInit {
 
     public readMessage(message: Message): void {
         this.currentMessage = message
+    }
+
+    public get collectionTypeViewing(): MessageViewOption {
+        return this._collectionTypeViewing
+    }
+
+    public set collectionTypeViewing(type: MessageViewOption) {
+
+        // set the collection type
+        this._collectionTypeViewing = type
+
+        // get inbox messages
+        if (this._collectionTypeViewing === 'received' && this.authorizedUser) {
+            this.collectionViewing = this.messageService.getMessagesReceivedByUser(this.authorizedUser)
+
+        // get messages sent by user
+        } else if (this.collectionTypeViewing === 'sent' && this.authorizedUser) {
+            this.collectionViewing = this.messageService.getMessagesSentByUser(this.authorizedUser)
+        }
+
+        // clear the current message
+        this.currentMessage = undefined
     }
 
 }
