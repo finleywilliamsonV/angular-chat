@@ -3,7 +3,7 @@ import { DefaultUserName, GlobalVariableService } from './../shared/services/glo
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'app/shared/objects/user';
-import { UserService } from './../shared/services/user.service';
+import { DEFAULT_USER_PASSWORD, UserService } from './../shared/services/user.service';
 
 type UserFormData = {
     firstName: string,
@@ -61,8 +61,8 @@ export class NewUserFormComponent implements OnInit {
         const defaultUserData: UserFormData = {
             firstName: defaultUserName.firstName,
             lastName: defaultUserName.lastName,
-            password: '$cv2365',
-            passwordConfirmation: '$cv2365'
+            password: DEFAULT_USER_PASSWORD,
+            passwordConfirmation: DEFAULT_USER_PASSWORD
         }
         this.signupForm.form.setValue(defaultUserData)
     }

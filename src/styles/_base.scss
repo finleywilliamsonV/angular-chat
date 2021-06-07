@@ -19,3 +19,11 @@ $palePink: #F7D0CA;
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+
+.border-purple {
+    border: 1px solid rebeccapurple;
+}
+
+.border-orange {
+    border: 1px solid salmon;
+}

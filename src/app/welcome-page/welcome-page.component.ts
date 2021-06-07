@@ -1,5 +1,6 @@
+import { Router } from '@angular/router';
 import { AuthService } from './../shared/services/auth.service';
-import { UserService } from './../shared/services/user.service';
+import { UserService, DEFAULT_USER_PASSWORD } from './../shared/services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'app/shared/objects/user';
 import { Subscription } from 'rxjs';
@@ -24,13 +25,14 @@ export class WelcomePageComponent implements OnInit {
      */
     constructor(
         private userService: UserService,
-        private authService: AuthService
+        private authService: AuthService,
+        private router: Router
     ) { }
 
     /**
      * On Init Lifecycle Hook 
      */
-    ngOnInit(): void {
+    async ngOnInit(): Promise<void> {
         this.users = this.userService.users
         this.usersChangedSub = this.userService.usersChanged.subscribe(
             (newUsers: User[]) => {
@@ -44,6 +46,10 @@ export class WelcomePageComponent implements OnInit {
                 this.authorizedUser = authorizedUser
             }
         )
+
+        const currentFirstUser = this.users[0]
+        await this.authService.authorizeUser(currentFirstUser, DEFAULT_USER_PASSWORD)
+        this.router.navigate(['/messages', currentFirstUser.id])
     }
 
     /**

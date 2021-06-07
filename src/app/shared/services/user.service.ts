@@ -4,6 +4,9 @@ import { Injectable } from '@angular/core';
 import { User } from '../objects/user';
 import { find } from 'lodash';
 
+// default user password
+export const DEFAULT_USER_PASSWORD: string = '$cv2365'
+
 /**
  * User Service
  */
@@ -28,12 +31,12 @@ export class UserService {
         this.addUser(
             'Finley',
             'Williamson',
-            '$cv2365'
+            DEFAULT_USER_PASSWORD
         )
         this.addUser(
             'Kimbie',
             'McPeason',
-            '$cv2365'
+            DEFAULT_USER_PASSWORD
         )
     }
 
