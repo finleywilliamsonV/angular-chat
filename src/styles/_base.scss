@@ -1,9 +1,13 @@
 $lilac: #c8a2c8;
 $gunmetal: #343a40;
 $slate: #6e7a87;
+$lightestGray: #d4d4d4;
 $tangerine: #eb9486;
 $babyPink: #f4c1b9;
 $palePink: #f7d0ca;
+$blue: #007bff;
+$lightBlue: #5aaaff;
+$lightestBlue: #9acbff;
 
 .green {
     color: green;
@@ -20,12 +24,16 @@ $palePink: #f7d0ca;
 /* Importing Bootstrap SCSS file. */
 @import "~bootstrap/scss/bootstrap";
 
-.border-purple {
+.border-gunmetal {
     border: 1px solid rebeccapurple;
 }
 
 .border-orange {
     border: 1px solid salmon;
+}
+
+.border-gunmetal {
+    border: 1px solid $gunmetal;
 }
 
 .remove-top-border {

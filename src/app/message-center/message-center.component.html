@@ -16,7 +16,7 @@
                 </li>
                 <li class="nav-item">
                   <div
-                        class="nav-link"
+                        class="nav-link ml-1"
                         [class.active]="collectionTypeViewing === 'sent'"
                         (click)="collectionTypeViewing = 'sent'"><i class="far fa-paper-plane mr-1"></i>
                         Sent Messages
@@ -42,25 +42,39 @@
         <!-- right column -->
         <div class="col-8">
 
-            <!-- new message button -->
+            <!-- right hand buttons -->
             <div class="height-40 mb-2 text-align-right">
+
+                <!-- new message button -->
                 <button
                     class="btn btn-primary"
-                    (click)="writingNewMessage = true"
-                    [disabled]="writingNewMessage">
+                    *ngIf="!writingNewMessage"
+                    (click)="writingNewMessage = true">
                     <i class="far fa-envelope mr-1"></i>
                     New Message
+                </button>
+
+                <!-- send message button -->
+                <button
+                    class="btn btn-primary"
+                    *ngIf="writingNewMessage"
+                    (click)="submitNewMessage()"
+                    [disabled]="!newMessageFormIsValid()">
+                    <i class="fas fa-paper-plane"></i>
+                    Send Message
                 </button>
             </div>
 
             <!-- message item container -->
-            <div class="border-purple height-600 p-3">
+            <div class="border-gunmetal height-600 p-3">
 
                 <message-item
                     *ngIf="currentMessage && !writingNewMessage"
                     [message]="currentMessage"
                     [messageView]="collectionTypeViewing">
                 </message-item>
+
+                <new-message-form *ngIf="writingNewMessage"></new-message-form>
             </div>
         </div>
     </div>

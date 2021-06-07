@@ -25,6 +25,7 @@ import { HideAndRetainSpaceDirective } from './shared/directives/hide-and-retain
 import { MessageCenterComponent } from './message-center/message-center.component';
 import { InboxItemComponent } from './message-center/inbox-item/inbox-item.component';
 import { MessageItemComponent } from './message-center/message-item/message-item.component';
+import { NewMessageFormComponent } from './message-center/new-message-form/new-message-form.component';
 
 @NgModule({
     declarations: [
@@ -44,7 +45,8 @@ import { MessageItemComponent } from './message-center/message-item/message-item
         HideAndRetainSpaceDirective,
         MessageCenterComponent,
         InboxItemComponent,
-        MessageItemComponent
+        MessageItemComponent,
+        NewMessageFormComponent
     ],
     imports: [
         AngularFireModule.initializeApp(environment.firebase),

@@ -1,10 +1,11 @@
+import { NewMessageFormComponent } from './new-message-form/new-message-form.component';
 import { UserService } from './../shared/services/user.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { MessageService, MessageViewOption } from './../shared/services/message.service';
 import { AuthService } from './../shared/services/auth.service';
 import { Message } from './../shared/objects/message';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { User } from 'app/shared/objects/user';
 
 @Component({
@@ -12,11 +13,14 @@ import { User } from 'app/shared/objects/user';
     templateUrl: './message-center.component.html',
     styleUrls: ['./message-center.component.scss']
 })
-export class MessageCenterComponent implements OnInit {
+export class MessageCenterComponent implements OnInit, AfterViewInit {
 
     /**
      * Member vars
      */
+
+    @ViewChild(NewMessageFormComponent)
+    public newMessageForm: NewMessageFormComponent
 
     // user vars
     public authorizedUser: User | undefined
@@ -45,7 +49,7 @@ export class MessageCenterComponent implements OnInit {
         private userService: UserService,
         private router: Router
     ) {
-        this._writingNewMessage = false
+        this._writingNewMessage = true
     }
 
     /**
@@ -78,6 +82,13 @@ export class MessageCenterComponent implements OnInit {
     }
 
     /**
+     * After View Init Lifecycle Hook
+     */
+    public ngAfterViewInit(): void {
+        console.log('newMessageForm:', this.newMessageForm)
+    }
+
+    /**
      * Updates the messages for the authorized user
      */
     private updateMessagesForUser(): void {
@@ -99,6 +110,7 @@ export class MessageCenterComponent implements OnInit {
      */
     public readMessage(message: Message): void {
         this.currentMessage = message
+        this._writingNewMessage = false
     }
 
     /**
@@ -148,4 +160,17 @@ export class MessageCenterComponent implements OnInit {
         this.currentMessage = undefined
     }
 
+    /**
+     * Checks if the new message form is valid
+     */
+    public newMessageFormIsValid(): boolean {
+        return this.newMessageForm && this.newMessageForm.formIsValid
+    }
+
+    /**
+     * Submits the new message from the child component
+     */
+    public submitNewMessage(): void {
+        this.newMessageForm.onSubmit()
+    }
 }

@@ -1,0 +1,60 @@
+<div class="mt-4">
+    <form
+        #form="ngForm">
+
+        <!-- recipient select -->
+        <div
+            class="dropdown recipient-input"
+            *ngIf="!recipient else recipientDisplay">
+            <button
+                class="btn btn-outline-dark dropdown-toggle"
+                type="button"
+                data-toggle="dropdown">
+                Add Recipient
+            </button>
+            <div class="dropdown-menu">
+                <a
+                    *ngFor="let user of usersOtherThanAuthorized"
+                    class="dropdown-item"
+                    (click)="setRecipient(user)">
+                    {{ user.name_full }}
+                </a>
+            </div>
+        </div>
+
+        <!-- recipient display -->
+        <ng-template #recipientDisplay>
+            <div *ngIf="recipient">
+                <div class="h5 height-38">
+                    To:
+                    <span class="italic">
+                        {{ recipient.name_lastFirst }}
+                    </span>
+                    <i
+                        class="fas fa-times remove-recipient-icon ml-1"
+                        (click)="clearRecipient()"></i>
+                </div>
+            </div>
+        </ng-template>
+
+        <!-- Subject input -->
+        <div class="input-group mt-3 subject-input">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Subject: </span>
+            </div>
+            <input
+                class="form-control"
+                type="text"
+                name="subject"
+                ngModel>
+        </div>
+
+        <!-- body textarea -->
+        <textarea
+            class="form-control body-input mt-3"
+            name="body"
+            ngModel>
+        </textarea>
+
+    </form>
+</div>

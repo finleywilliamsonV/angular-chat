@@ -1,13 +1,12 @@
 @use 'base';
 
 .card {
-    border: base.$tangerine 3px solid;
-    background-color: base.$palePink;
+    border: base.$gunmetal 3px solid;
     margin: 20px
 }
 
 .fa-user {
-    color: base.$tangerine;
+    color: base.$gunmetal;
 }
 
 .card-img-top {

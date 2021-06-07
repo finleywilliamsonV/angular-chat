@@ -1,3 +1,5 @@
+@use 'base';
+
 .conatain-with-scrollbar {
     overflow-y: scroll;
     height: 600px;
@@ -9,4 +11,13 @@
 
 .height-600 {
     height: 600px;
+}
+
+.nav-link {
+
+    cursor: pointer;
+
+    &:hover:not(.active) {
+        background-color: base.$lightestGray;
+    }
 }

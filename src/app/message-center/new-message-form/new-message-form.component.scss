@@ -1,0 +1,40 @@
+@use 'base';
+
+.remove-recipient-icon {
+
+    color: gray;
+
+    &:hover {
+        color: red;
+        cursor: pointer;
+    }
+}
+
+.recipient-input div {
+    border: 1px solid base.$gunmetal;
+    cursor: pointer;
+
+    &:hover {
+        background-color: base.$lightestGray;
+        * {
+            background-color: base.$lightestGray;
+        }
+    }
+}
+
+.subject-input {
+
+    span, input {
+        border: 1px solid base.$gunmetal;
+    }
+}
+
+.body-input {
+    resize: none;
+    height: 433px !important;
+    border: 1px solid base.$gunmetal;
+}
+
+.height-38 {
+    height: 38px;
+}
