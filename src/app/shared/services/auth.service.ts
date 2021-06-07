@@ -100,7 +100,7 @@ export class AuthService {
      * Returns the user authorization subject
      * @returns Subject
      */
-    public get userAuthorization(): Subject<User> {
+    public get userAuthChanged(): Subject<User> {
         return this._userAuthorization
     }
 }

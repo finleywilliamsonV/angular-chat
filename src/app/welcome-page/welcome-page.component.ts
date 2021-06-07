@@ -22,6 +22,7 @@ export class WelcomePageComponent implements OnInit {
     private usersChangedSub: Subscription
     public authorizedUser: User
     private userAuthorizationSub: Subscription
+    private initialized: boolean
 
     /**
      * Constuctor
@@ -33,7 +34,9 @@ export class WelcomePageComponent implements OnInit {
         private authService: AuthService,
         private messageService: MessageService,
         private router: Router
-    ) { }
+    ) {
+        this.initialized = false
+    }
 
     /**
      * On Init Lifecycle Hook 
@@ -56,7 +59,7 @@ export class WelcomePageComponent implements OnInit {
         )
 
         // subscribe to user authorization
-        this.userAuthorizationSub = this.authService.userAuthorization.subscribe(
+        this.userAuthorizationSub = this.authService.userAuthChanged.subscribe(
             (authorizedUser: User) => {
                 this.authorizedUser = authorizedUser
             }
@@ -100,6 +103,13 @@ export class WelcomePageComponent implements OnInit {
      */
     public async initTest() {
 
+        // only init once
+        if (this.initialized) {
+            return
+        } else {
+            this.initialized = true
+        }
+
         // get users for testing 
         const firstUser = this.users[0]
         const secondUser = this.users[1]
@@ -111,8 +121,8 @@ export class WelcomePageComponent implements OnInit {
         }
 
         // authorize the first user
-        await this.authService.authorizeUser(firstUser, DEFAULT_USER_PASSWORD)
-        this.router.navigate(['/messages', firstUser.id])
+        // await this.authService.authorizeUser(firstUser, DEFAULT_USER_PASSWORD)
+        // this.router.navigate(['/messages', firstUser.id])
 
         // add test messages from first user to second user
         this.messageService.addMessage(

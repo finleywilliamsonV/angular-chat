@@ -24,6 +24,7 @@ export class MessageCenterComponent implements OnInit, AfterViewInit {
 
     // user vars
     public authorizedUser: User | undefined
+    public authChangedSub: Subscription
     public users: User[]
     public usersChangedSub: Subscription
 
@@ -59,6 +60,15 @@ export class MessageCenterComponent implements OnInit, AfterViewInit {
 
         // get the authorized user
         this.authorizedUser = this.authService.authorizedUser
+
+        // subscribe to the user authorization state
+        this.authChangedSub = this.authService.userAuthChanged.subscribe(
+            newUserAuthorized => {
+                if (this.authorizedUser != newUserAuthorized) {
+                    this.router.navigate(['/'])
+                }
+            }
+        )
  
         // get the messages for the user
         this.updateMessagesForUser()

@@ -34,7 +34,7 @@ export class HeaderComponent implements OnInit {
         }
 
         // subscribe to user authorization
-        this.userAuthorizationSub = this.authService.userAuthorization.subscribe(
+        this.userAuthorizationSub = this.authService.userAuthChanged.subscribe(
             (authorizedUser: User) => {
                 this.authorizedUser = authorizedUser
             }
