@@ -1,9 +1,9 @@
-$lilac: #C8A2C8;
-$gunmetal: #343A40;
-$slate: #6E7A87;
-$tangerine: #EB9486;
+$lilac: #c8a2c8;
+$gunmetal: #343a40;
+$slate: #6e7a87;
+$tangerine: #eb9486;
 $babyPink: #f4c1b9;
-$palePink: #F7D0CA;
+$palePink: #f7d0ca;
 
 .green {
     color: green;
@@ -18,7 +18,7 @@ $palePink: #F7D0CA;
 }
 
 /* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 
 .border-purple {
     border: 1px solid rebeccapurple;
@@ -26,4 +26,26 @@ $palePink: #F7D0CA;
 
 .border-orange {
     border: 1px solid salmon;
+}
+
+.overflow-ellipses {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.text-align-right {
+    text-align: right;
+}
+
+.preserve-new-lines {
+    white-space: pre-wrap;
 }

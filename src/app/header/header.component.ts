@@ -28,6 +28,11 @@ export class HeaderComponent implements OnInit {
      */
     public ngOnInit(): void {
 
+        // get the currently authorized user
+        if (this.authService.authorizedUser) {
+            this.authorizedUser = this.authService.authorizedUser
+        }
+
         // subscribe to user authorization
         this.userAuthorizationSub = this.authService.userAuthorization.subscribe(
             (authorizedUser: User) => {

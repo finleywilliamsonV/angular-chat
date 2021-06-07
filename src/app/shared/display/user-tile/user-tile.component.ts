@@ -39,11 +39,17 @@ export class UserTileComponent implements OnInit {
      */
     ngOnInit(): void {
 
+        // get the authorized user
+        if (this.authService.authorizedUser) {
+            this.authorizedUser = this.authService.authorizedUser
+            this.checkUserCurrentlyAuthorized()
+        }
+
         // subscribe to user authorization
         this.userAuthorizationSub = this.authService.userAuthorization.subscribe(
             (authorizedUser: User) => {
                 this.authorizedUser = authorizedUser
-                this.currentUserAuthorized = this.user === this.authorizedUser
+                this.checkUserCurrentlyAuthorized()
             }
         )
     }
@@ -79,5 +85,12 @@ export class UserTileComponent implements OnInit {
      */
     public logOutUser(): void {
         
+    }
+
+    /**
+     * checks if the current user is the authorized user
+     */
+    public checkUserCurrentlyAuthorized(): void {
+        this.currentUserAuthorized = this.user === this.authorizedUser
     }
 }

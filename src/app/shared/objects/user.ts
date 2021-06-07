@@ -36,7 +36,10 @@ export class User {
     public get id(): number {
         return this._id
     }
-    public get fullName(): string {
+    public get name_full(): string {
         return `${this.firstName} ${this.lastName}`
+    }
+    public get name_lastFirst(): string {
+        return `${this.lastName}, ${this.firstName}`
     }
 }

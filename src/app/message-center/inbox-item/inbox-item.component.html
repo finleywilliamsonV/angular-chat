@@ -1,0 +1,8 @@
+<div class="container-fluid border-purple p-2">
+    <p class="h5 overflow-ellipses mb-0">{{ message.sender.lastName }}, {{ message.sender.firstName }}</p>
+    <div class="ml-2 mt-2">
+        <p class="overflow-ellipses mb-0 bold">{{ message.subject }}</p>
+        <p class="italic overflow-ellipses mb-0">{{ message.body }}</p>
+        <p class="mb-0 mt-2 text-align-right">{{ message.dateString_full }}</p>
+    </div>
+</div>

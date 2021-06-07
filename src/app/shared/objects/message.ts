@@ -1,4 +1,5 @@
 import { User } from "./user"
+import * as moment from 'moment'
 
 /**
  * Message Class
@@ -11,6 +12,7 @@ export class Message {
     private _subject: string
     private _body: string
     private _isRead: boolean
+    private _dateSent: moment.Moment
     private _id: number
 
     /**
@@ -28,6 +30,7 @@ export class Message {
         this._subject = subject
         this._body = body
         this._isRead = false
+        this._dateSent = moment()
         this._id = id
     }
 
@@ -49,5 +52,20 @@ export class Message {
     }
     public get id(): number {
         return this._id
+    }
+
+
+    /**
+     * Gets the full date string
+     */
+    public get dateString_full(): string {
+        return this._dateSent.format('ddd, M/D/YY - h:mm A')
+    }
+
+    /**
+     * Gets the month/day date string
+     */
+    public get dateString_monthDay(): string {
+        return this._dateSent.format('M/D')
     }
 }
