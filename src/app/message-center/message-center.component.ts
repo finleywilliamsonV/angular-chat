@@ -1,3 +1,4 @@
+import { UserService } from './../shared/services/user.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { MessageService, MessageViewOption } from './../shared/services/message.service';
@@ -13,15 +14,27 @@ import { User } from 'app/shared/objects/user';
 })
 export class MessageCenterComponent implements OnInit {
 
-    // member vars
+    /**
+     * Member vars
+     */
+
+    // user vars
     public authorizedUser: User | undefined
+    public users: User[]
+    public usersChangedSub: Subscription
+
+    // user message vars
+    public currentMessage: Message | undefined
+    public messagesChangedSub: Subscription
+
+    // user message collection vars
     public userRecievedMessages: Message[]
     public userSentMessages: Message[]
-    public messagesChangedSub: Subscription
-    public currentMessage: Message | undefined
-
     private _collectionTypeViewing: MessageViewOption
     public collectionViewing: Message[]
+
+    // display vars
+    private _writingNewMessage: boolean
 
     /**
      * Constructor
@@ -29,9 +42,10 @@ export class MessageCenterComponent implements OnInit {
     constructor(
         private authService: AuthService,
         private messageService: MessageService,
+        private userService: UserService,
         private router: Router
     ) {
-        
+        this._writingNewMessage = false
     }
 
     /**
@@ -49,6 +63,13 @@ export class MessageCenterComponent implements OnInit {
         this.messagesChangedSub = this.messageService.messagesChanged.subscribe(
             () => {
                 this.updateMessagesForUser()
+            }
+        )
+
+        // subscribe to user changes
+        this.usersChangedSub = this.userService.usersChanged.subscribe(
+            newUsers => {
+                this.users = newUsers
             }
         )
 
@@ -72,14 +93,24 @@ export class MessageCenterComponent implements OnInit {
         this.userSentMessages = this.messageService.getMessagesSentByUser(this.authorizedUser)
     }
 
+    /**
+     * Sets a message to read.
+     * @param message 
+     */
     public readMessage(message: Message): void {
         this.currentMessage = message
     }
 
+    /**
+     * Gets the collection type the user is currently viewing.
+     */
     public get collectionTypeViewing(): MessageViewOption {
         return this._collectionTypeViewing
     }
 
+    /**
+     * Sets the collection type the user is currently viewing and sets the current collection accordingly.
+     */
     public set collectionTypeViewing(type: MessageViewOption) {
 
         // set the collection type
@@ -93,6 +124,25 @@ export class MessageCenterComponent implements OnInit {
         } else if (this.collectionTypeViewing === 'sent' && this.authorizedUser) {
             this.collectionViewing = this.messageService.getMessagesSentByUser(this.authorizedUser)
         }
+
+        // clear the current message
+        this.currentMessage = undefined
+    }
+
+    /**
+     * Gets whether the user is writing a new message
+     */
+    public get writingNewMessage(): boolean {
+        return this._writingNewMessage
+    }
+
+    /**
+     * Sets whether the user is writing a new message
+     */
+    public set writingNewMessage(isWriting: boolean) {
+        
+        // set whether the user is writing
+        this._writingNewMessage = isWriting
 
         // clear the current message
         this.currentMessage = undefined

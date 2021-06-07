@@ -10,8 +10,7 @@
                   <div
                         class="nav-link"
                         [class.active]="collectionTypeViewing === 'received'"
-                        (click)="collectionTypeViewing = 'received'">
-                        <i class="fas fa-inbox mr-1"></i>
+                        (click)="collectionTypeViewing = 'received'"><i class="fas fa-inbox mr-1"></i>
                         Inbox
                     </div>
                 </li>
@@ -19,8 +18,7 @@
                   <div
                         class="nav-link"
                         [class.active]="collectionTypeViewing === 'sent'"
-                        (click)="collectionTypeViewing = 'sent'">
-                        <i class="far fa-paper-plane mr-1"></i>
+                        (click)="collectionTypeViewing = 'sent'"><i class="far fa-paper-plane mr-1"></i>
                         Sent Messages
                     </div>
                 </li>
@@ -46,16 +44,20 @@
 
             <!-- new message button -->
             <div class="height-40 mb-2 text-align-right">
-                <div class="btn btn-primary">
+                <button
+                    class="btn btn-primary"
+                    (click)="writingNewMessage = true"
+                    [disabled]="writingNewMessage">
                     <i class="far fa-envelope mr-1"></i>
                     New Message
-                </div>
+                </button>
             </div>
 
-            <div class="border-purple height-600">
+            <!-- message item container -->
+            <div class="border-purple height-600 p-3">
 
                 <message-item
-                    *ngIf="currentMessage"
+                    *ngIf="currentMessage && !writingNewMessage"
                     [message]="currentMessage"
                     [messageView]="collectionTypeViewing">
                 </message-item>
