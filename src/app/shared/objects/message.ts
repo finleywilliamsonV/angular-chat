@@ -68,4 +68,11 @@ export class Message {
     public get dateString_monthDay(): string {
         return this._dateSent.format('M/D')
     }
+
+    /**
+     * Gets the epoch seconds
+     */
+    public get epochSeconds(): number {
+        return this._dateSent.unix()
+    }
 }

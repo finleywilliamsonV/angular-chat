@@ -70,8 +70,6 @@ export class NewMessageFormComponent implements OnInit {
         // check all data exists
         if (this.recipient && newMessageData.subject && newMessageData.body) {
 
-            console.log('newMessageData:', newMessageData)
-
             // add the message
             this.messageService.addMessage(
                 this.authorizedUser,
@@ -80,7 +78,6 @@ export class NewMessageFormComponent implements OnInit {
                 newMessageData.body
             )
         }
-        // this.router.navigate(['home'])
     }
 
     public get formIsValid(): boolean {

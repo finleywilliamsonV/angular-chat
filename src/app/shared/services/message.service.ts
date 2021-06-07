@@ -1,3 +1,4 @@
+import { UserService } from './user.service';
 import { GlobalVariableService } from './global-variable.service';
 import { User } from './../objects/user';
 import { Message } from './../objects/message';
@@ -28,10 +29,13 @@ export class MessageService {
      * Constructor
      */
     constructor(
-        private globalVariableService: GlobalVariableService
+        private globalVariableService: GlobalVariableService,
+        private userService: UserService
     ) {
         this._messages = []
         this.messagesChanged = new Subject<Message[]>()
+
+        this.initTest()
     }
 
     /**
@@ -50,6 +54,7 @@ export class MessageService {
         subject: string,
         body: string
     ): void {
+
         this._messages.push(
             new Message(
                 sender,
@@ -59,6 +64,11 @@ export class MessageService {
                 this.globalVariableService.getNextMessageId()
             )
         )
+
+        this._messages.sort((a: Message, b: Message): number => {
+            return b.epochSeconds - a.epochSeconds
+        })
+
         this.messagesChanged.next(this.messages)
     }
 
@@ -78,5 +88,87 @@ export class MessageService {
      */
     public getMessagesReceivedByUser(user: User): Message[] {
         return this.messages.filter(message => message.recipient === user)
+    }
+
+    /**
+     * Adds test messages to the system
+     */
+    private initTest(): void {
+        // get users for testing 
+        const firstUser = this.userService.users[0]
+        const secondUser = this.userService.users[1]
+
+        // make sure they exist
+        if (!firstUser || !secondUser) {
+            console.error('Init test invalid, add more users')
+            return
+        }
+
+        // add test messages from first user to second user
+        this.addMessage(
+            secondUser,
+            firstUser,
+            'Test Message 1',
+            LOREM_IPSUM
+        )
+
+        this.addMessage(
+            secondUser,
+            firstUser,
+            'Test Message 2',
+            CUPCAKE_IPSUM
+        )
+
+        this.addMessage(
+            secondUser,
+            firstUser,
+            'Test Message 3',
+            HIPSTER_IPSUM
+        )
+
+        // add test messages from the first user to the second user
+        this.addMessage(
+            firstUser,
+            secondUser,
+            'Test Message 4',
+            LOREM_IPSUM
+        )
+
+        this.addMessage(
+            firstUser,
+            secondUser,
+            'Test Message 5',
+            CUPCAKE_IPSUM
+        )
+
+        this.addMessage(
+            firstUser,
+            secondUser,
+            'Test Message 6',
+            HIPSTER_IPSUM
+        )
+
+        
+        // add more test messages from first user to second user
+        this.addMessage(
+            secondUser,
+            firstUser,
+            'Test Message 7',
+            LOREM_IPSUM
+        )
+
+        this.addMessage(
+            secondUser,
+            firstUser,
+            'Test Message 8',
+            CUPCAKE_IPSUM
+        )
+
+        this.addMessage(
+            secondUser,
+            firstUser,
+            'Test Message 9',
+            HIPSTER_IPSUM
+        )
     }
 }

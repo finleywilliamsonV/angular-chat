@@ -1,7 +1,6 @@
 @use 'base';
 
 .remove-recipient-icon {
-
     color: gray;
 
     &:hover {
@@ -14,17 +13,16 @@
     border: 1px solid base.$gunmetal;
     cursor: pointer;
 
-    &:hover {
-        background-color: base.$lightestGray;
-        * {
-            background-color: base.$lightestGray;
+    a {
+        &:hover {
+            color: base.$blue;
         }
     }
 }
 
 .subject-input {
-
-    span, input {
+    span,
+    input {
         border: 1px solid base.$gunmetal;
     }
 }

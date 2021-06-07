@@ -69,7 +69,7 @@ export class UserTileComponent implements OnInit {
             LoginModalComponent,
             {
                 centered: true,
-                backdropClass: 'background-baby-pink',
+                backdropClass: 'background-white',
                 backdrop: 'static'
             },
             loginModalBindings

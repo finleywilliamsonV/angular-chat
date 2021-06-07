@@ -2,6 +2,6 @@
 
 // used here instead of in _base.scss, as styles there are encapsulated,
 // and we need this class string unencapsulated to pass as a modal backdrop color
-.background-baby-pink {
-    background-color: base.$babyPink;
+.background-white {
+    background-color: white;
 }

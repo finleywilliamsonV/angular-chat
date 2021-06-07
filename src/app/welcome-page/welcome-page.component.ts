@@ -34,14 +34,12 @@ export class WelcomePageComponent implements OnInit {
         private authService: AuthService,
         private messageService: MessageService,
         private router: Router
-    ) {
-        this.initialized = false
-    }
+    ) { }
 
     /**
      * On Init Lifecycle Hook 
      */
-    async ngOnInit(): Promise<void> {
+    public ngOnInit(): void {
 
         // get the users
         this.users = this.userService.users
@@ -64,11 +62,6 @@ export class WelcomePageComponent implements OnInit {
                 this.authorizedUser = authorizedUser
             }
         )
-
-        // initialize the test case
-        if (!this.authorizedUser) {
-            await this.initTest()
-        }
     }
 
     /**
@@ -95,100 +88,5 @@ export class WelcomePageComponent implements OnInit {
         } else {
             return `${this.users.length} Users Found`
         }
-    }
-
-
-    /**
-     * Inits whatever case I'm testing at the time
-     */
-    public async initTest() {
-
-        // only init once
-        if (this.initialized) {
-            return
-        } else {
-            this.initialized = true
-        }
-
-        // get users for testing 
-        const firstUser = this.users[0]
-        const secondUser = this.users[1]
-
-        // make sure they exist
-        if (!firstUser || !secondUser) {
-            console.error('Init test invalid, add more users')
-            return
-        }
-
-        // authorize the first user
-        // await this.authService.authorizeUser(firstUser, DEFAULT_USER_PASSWORD)
-        // this.router.navigate(['/messages', firstUser.id])
-
-        // add test messages from first user to second user
-        this.messageService.addMessage(
-            secondUser,
-            firstUser,
-            'Test Message 1',
-            LOREM_IPSUM
-        )
-
-        this.messageService.addMessage(
-            secondUser,
-            firstUser,
-            'Test Message 2',
-            CUPCAKE_IPSUM
-        )
-
-        this.messageService.addMessage(
-            secondUser,
-            firstUser,
-            'Test Message 3',
-            HIPSTER_IPSUM
-        )
-
-        // add test messages from the first user to the second user
-        this.messageService.addMessage(
-            firstUser,
-            secondUser,
-            'Test Message 4',
-            LOREM_IPSUM
-        )
-
-        this.messageService.addMessage(
-            firstUser,
-            secondUser,
-            'Test Message 5',
-            CUPCAKE_IPSUM
-        )
-
-        this.messageService.addMessage(
-            firstUser,
-            secondUser,
-            'Test Message 6',
-            HIPSTER_IPSUM
-        )
-
-        
-        // add more test messages from first user to second user
-        this.messageService.addMessage(
-            secondUser,
-            firstUser,
-            'Test Message 7',
-            LOREM_IPSUM
-        )
-
-        this.messageService.addMessage(
-            secondUser,
-            firstUser,
-            'Test Message 8',
-            CUPCAKE_IPSUM
-        )
-
-        this.messageService.addMessage(
-            secondUser,
-            firstUser,
-            'Test Message 9',
-            HIPSTER_IPSUM
-        )
     }
 }

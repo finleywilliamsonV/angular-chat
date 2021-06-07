@@ -33,8 +33,6 @@ export class MessageCenterComponent implements OnInit, AfterViewInit {
     public messagesChangedSub: Subscription
 
     // user message collection vars
-    public userRecievedMessages: Message[]
-    public userSentMessages: Message[]
     private _collectionTypeViewing: MessageViewOption
     public collectionViewing: Message[]
 
@@ -50,7 +48,7 @@ export class MessageCenterComponent implements OnInit, AfterViewInit {
         private userService: UserService,
         private router: Router
     ) {
-        this._writingNewMessage = true
+        this._writingNewMessage = false
     }
 
     /**
@@ -109,9 +107,9 @@ export class MessageCenterComponent implements OnInit, AfterViewInit {
             this.router.navigate(['/'])
             return
         }
-        
-        this.userRecievedMessages = this.messageService.getMessagesReceivedByUser(this.authorizedUser)
-        this.userSentMessages = this.messageService.getMessagesSentByUser(this.authorizedUser)
+
+        // update the message view
+        this.updateCollectionTypeViewing()
     }
 
     /**
@@ -135,9 +133,26 @@ export class MessageCenterComponent implements OnInit, AfterViewInit {
      */
     public set collectionTypeViewing(type: MessageViewOption) {
 
+        // do nothing if type has not changed
+        if (this._collectionTypeViewing === type) {
+            return
+        }
+
         // set the collection type
         this._collectionTypeViewing = type
 
+        // clear the current message
+        this.currentMessage = undefined
+
+        // update the message view
+        this.updateCollectionTypeViewing()
+    }
+
+    /**
+     * Updates the collection we are viewing in the message center
+     */
+    public updateCollectionTypeViewing(): void {
+        
         // get inbox messages
         if (this._collectionTypeViewing === 'received' && this.authorizedUser) {
             this.collectionViewing = this.messageService.getMessagesReceivedByUser(this.authorizedUser)
@@ -146,9 +161,6 @@ export class MessageCenterComponent implements OnInit, AfterViewInit {
         } else if (this.collectionTypeViewing === 'sent' && this.authorizedUser) {
             this.collectionViewing = this.messageService.getMessagesSentByUser(this.authorizedUser)
         }
-
-        // clear the current message
-        this.currentMessage = undefined
     }
 
     /**
@@ -182,5 +194,6 @@ export class MessageCenterComponent implements OnInit, AfterViewInit {
      */
     public submitNewMessage(): void {
         this.newMessageForm.onSubmit()
+        this.writingNewMessage = false
     }
 }
