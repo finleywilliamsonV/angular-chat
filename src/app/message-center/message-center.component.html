@@ -1,81 +1,89 @@
 <div class="container-fluid mt-5">
-    <div class="row">
+	<div class="row">
 
-        <!-- left column -->
-        <div class="col-4">
+		<!-- left column -->
+		<div class="col-4">
 
-            <!-- navbar -->
-            <ul class="nav nav-pills  mb-2">
-                <li class="nav-item">
-                  <div
-                        class="nav-link"
-                        [class.active]="collectionTypeViewing === 'received'"
-                        (click)="collectionTypeViewing = 'received'"><i class="fas fa-inbox mr-1"></i>
-                        Inbox
-                    </div>
-                </li>
-                <li class="nav-item">
-                  <div
-                        class="nav-link ml-1"
-                        [class.active]="collectionTypeViewing === 'sent'"
-                        (click)="collectionTypeViewing = 'sent'"><i class="far fa-paper-plane mr-1"></i>
-                        Sent Messages
-                    </div>
-                </li>
-            </ul>
+			<!-- navbar -->
+			<ul class="nav nav-pills  mb-2">
+				<li class="nav-item">
+					<div
+						class="nav-link"
+						[class.active]="collectionTypeViewing === 'received'"
+						(click)="collectionTypeViewing = 'received'">
+						<i class="fas fa-inbox mr-1"></i>
+						Inbox
+					</div>
+				</li>
+				<li class="nav-item">
+					<div
+						class="nav-link ml-1"
+						[class.active]="collectionTypeViewing === 'sent'"
+						(click)="collectionTypeViewing = 'sent'">
+						<i class="far fa-paper-plane mr-1"></i>
+						Sent Messages
+					</div>
+				</li>
+			</ul>
 
-            <!-- scrolling container -->
-            <div class="conatain-with-scrollbar pb-1">
+			<!-- scrolling container -->
+			<div class="pb-1" [ngClass]="{ 'conatain-with-scrollbar': collectionViewing.length > 0 }">
 
-                <!-- inbox items -->
-                <inbox-item
-                    *ngFor="let message of collectionViewing; index as i"
-                    [message]="message"
-                    [messageView]="collectionTypeViewing"
-                    [firstItem]="i != 0"
-                    (click)="readMessage(message)">
-                </inbox-item>
+				<!-- inbox items -->
+				<inbox-item
+					*ngFor="let message of collectionViewing; index as i"
+					[message]="message"
+					[messageView]="collectionTypeViewing"
+					[firstItem]="i != 0"
+					(click)="readMessage(message)">
+				</inbox-item>
 
-            </div>
-        </div>
+				<p
+					class="empty-message"
+					*ngIf="collectionViewing.length === 0">
+					{{collectionTypeViewing === "received" ? "Inbox" : "Sent Messages"}} Empty
+				</p>
 
-        <!-- right column -->
-        <div class="col-8">
+			</div>
+		</div>
 
-            <!-- right hand buttons -->
-            <div class="height-40 mb-2 text-align-right">
+		<!-- right column -->
+		<div class="col-8">
 
-                <!-- new message button -->
-                <button
-                    class="btn btn-primary"
-                    *ngIf="!writingNewMessage"
-                    (click)="writingNewMessage = true">
-                    <i class="far fa-envelope mr-1"></i>
-                    New Message
-                </button>
+			<!-- right hand buttons -->
+			<div class="height-40 mb-2 text-align-right">
 
-                <!-- send message button -->
-                <button
-                    class="btn btn-primary"
-                    *ngIf="writingNewMessage"
-                    (click)="submitNewMessage()"
-                    [disabled]="!newMessageFormIsValid()">
-                    <i class="fas fa-paper-plane"></i>
-                    Send Message
-                </button>
-            </div>
+				<!-- new message button -->
+				<button
+					class="btn btn-primary"
+					*ngIf="!writingNewMessage"
+					(click)="writingNewMessage = true">
+					<i class="far fa-envelope mr-1"></i>
+					New Message
+				</button>
 
-            <!-- message item container -->
-            <div class="border-gunmetal height-600 p-3">
+				<!-- send message button -->
+				<button
+					class="btn btn-primary"
+					*ngIf="writingNewMessage"
+					(click)="submitNewMessage()"
+					[disabled]="!newMessageFormIsValid()">
+					<i class="fas fa-paper-plane"></i>
+					Send Message
+				</button>
+			</div>
 
-                <message-item
-                    *ngIf="currentMessage && !writingNewMessage"
-                    [message]="currentMessage"
-                    [messageView]="collectionTypeViewing">
-                </message-item>
+			<!-- message item container -->
+			<div class="border-gunmetal height-600 p-3">
 
-                <new-message-form *ngIf="writingNewMessage"></new-message-form>
-            </div>
-        </div>
-    </div>
+				<message-item
+					*ngIf="currentMessage && !writingNewMessage"
+					[message]="currentMessage"
+					[messageView]="collectionTypeViewing">
+				</message-item>
+
+				<new-message-form *ngIf="writingNewMessage"></new-message-form>
+			</div>
+		</div>
+	</div>
 </div>

@@ -14,10 +14,14 @@
 }
 
 .nav-link {
-
     cursor: pointer;
-
     &:hover:not(.active) {
         background-color: base.$lightestGray;
     }
+}
+
+.empty-message {
+    text-align: center;
+    font-style: italic;
+    margin-top: 20px;
 }

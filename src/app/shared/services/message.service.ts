@@ -91,6 +91,22 @@ export class MessageService {
     }
 
     /**
+     * Sets a message as read and pushes out the new messages
+     */
+    public readMessage(message: Message): void {
+        for (let i = 0; i < this._messages.length; i++) {
+            const currentMessage: Message = this._messages[i]
+            if (currentMessage.id === message.id) {
+                currentMessage.isRead = true
+                this.messagesChanged.next(this.messages)
+                return
+            }
+        }
+
+        throw new Error(`Trying to set a message read that doesn't exist!`)
+    }
+
+    /**
      * Adds test messages to the system
      */
     private initTest(): void {

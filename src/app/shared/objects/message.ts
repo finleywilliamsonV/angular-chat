@@ -50,6 +50,9 @@ export class Message {
     public get isRead(): boolean {
         return this._isRead
     }
+    public set isRead(tf: boolean) {
+        this._isRead = tf
+    }
     public get id(): number {
         return this._id
     }
