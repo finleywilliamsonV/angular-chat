@@ -2,12 +2,12 @@
 
 @use 'base';
 
-.blue-hover {
+.tangerine-hover {
 
     color: white;
 
     &:hover {
-        color: base.$lightBlue;
+        color: base.$tangerine-light;
         cursor: pointer;
     }
 }

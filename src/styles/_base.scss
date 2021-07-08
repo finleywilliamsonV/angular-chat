@@ -3,11 +3,13 @@ $gunmetal: #343a40;
 $slate: #6e7a87;
 $lightestGray: #d4d4d4;
 $tangerine: #eb9486;
-$babyPink: #f4c1b9;
-$palePink: #f7d0ca;
+$tangerine-light: #ffafa2;
+$tangerine-lightest: #ffcfc7;
 $blue: #007bff;
 $lightBlue: #5aaaff;
 $lightestBlue: #9acbff;
+
+$primary: $tangerine-light;
 
 .green {
     color: green;
@@ -60,4 +62,15 @@ $lightestBlue: #9acbff;
 
 .preserve-new-lines {
     white-space: pre-wrap;
+}
+
+.btn-tangerine {
+    @include button-variant(
+        $tangerine-light,
+        darken($tangerine-light, 7.5%),
+        darken($tangerine-light, 10%),
+        lighten($tangerine-light, 5%),
+        lighten($tangerine-light, 10%),
+        darken($tangerine-light, 30%)
+    );
 }

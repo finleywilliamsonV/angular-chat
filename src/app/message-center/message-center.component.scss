@@ -16,8 +16,13 @@
 .nav-link {
 
     cursor: pointer;
+    color: black !important;
 
     &:hover:not(.active) {
         background-color: base.$lightestGray;
+    }
+
+    &:hover.active {
+        cursor: default;
     }
 }

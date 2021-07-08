@@ -1,12 +1,24 @@
 @use 'base';
 
 .card {
-    border: base.$gunmetal 3px solid;
-    margin: 20px
+    margin: 20px;
 }
 
-.fa-user {
+.card.logged-out {
+    border: base.$gunmetal 3px solid;
+}
+
+.card.logged-in {
+    border: base.$tangerine 3px solid;
+    background-color: base.$tangerine-lightest;
+}
+
+.fa-user.logged-out {
     color: base.$gunmetal;
+}
+
+.fa-user.logged-in {
+    color: base.$tangerine;
 }
 
 .card-img-top {
