@@ -14,10 +14,6 @@ import { RequirePasswordMatchDirective } from './shared/directives/require-passw
 import { RequireSpecialCharacterDirective } from './shared/directives/require-special-character.directive';
 import { XOrCheckComponent } from './shared/display/x-or-check/x-or-check.component';
 import { UserTileComponent } from './shared/display/user-tile/user-tile.component';
-
-import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { environment } from '../environments/environment';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginModalComponent } from './login-modal/login-modal.component';
 import { SpinnerComponent } from './shared/display/spinner/spinner.component';
@@ -49,8 +45,6 @@ import { NewMessageFormComponent } from './message-center/new-message-form/new-m
         NewMessageFormComponent
     ],
     imports: [
-        AngularFireModule.initializeApp(environment.firebase),
-        AngularFirestoreModule,
         BrowserModule,
         AppRoutingModule,
         FormsModule,
