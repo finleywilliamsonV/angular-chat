@@ -12,7 +12,7 @@ export class Message {
     private _subject: string
     private _body: string
     private _isRead: boolean
-    private _dateSent: moment.Moment
+    private _dateSent: number
     private _id: number
 
     /**
@@ -23,14 +23,16 @@ export class Message {
         recipient: User,
         subject: string,
         body: string,
+        isRead: boolean,
+        dateSent: number,
         id: number
     ) {
         this._sender = sender
         this._recipient = recipient
         this._subject = subject
         this._body = body
-        this._isRead = false
-        this._dateSent = moment()
+        this._isRead = isRead
+        this._dateSent = dateSent
         this._id = id
     }
 
@@ -53,6 +55,9 @@ export class Message {
     public set isRead(tf: boolean) {
         this._isRead = tf
     }
+    public get dateSent(): number {
+        return this._dateSent
+    }
     public get id(): number {
         return this._id
     }
@@ -61,21 +66,21 @@ export class Message {
     /**
      * Gets the full date string
      */
-    public get dateString_full(): string {
-        return this._dateSent.format('ddd, M/D/YY - h:mm A')
+    public get dateString_full(): number {
+        return this._dateSent
     }
 
     /**
      * Gets the month/day date string
      */
-    public get dateString_monthDay(): string {
-        return this._dateSent.format('M/D')
+    public get dateString_monthDay(): number {
+        return this._dateSent
     }
 
     /**
      * Gets the epoch seconds
      */
     public get epochSeconds(): number {
-        return this._dateSent.unix()
+        return this._dateSent
     }
 }

@@ -12,8 +12,6 @@ export class GlobalVariableService {
 
     private defaultUserNameCount: number    // used for getting default user names
     private defaultUserNames: DefaultUserName[]
-    private currentUserId: number
-    private currentMessageId: number
 
     constructor() {
         this.defaultUserNameCount = 0
@@ -39,8 +37,6 @@ export class GlobalVariableService {
                 lastName: 'Derry'
             }
         ]
-        this.currentUserId = 0
-        this.currentMessageId = 0
     }
 
     /**
@@ -54,23 +50,4 @@ export class GlobalVariableService {
         this.defaultUserNameCount++
         return returnName
     }
-
-    /**
-     * Gets the next user id
-     */
-     public getNextUserId(): number {
-        const returnId: number = this.currentUserId
-        this.currentUserId++
-        return returnId
-    }
-
-    /**
-     * Gets the next message id
-     */
-     public getNextMessageId(): number {
-        const returnId: number = this.currentMessageId
-        this.currentMessageId++
-        return returnId
-    }
-
 }

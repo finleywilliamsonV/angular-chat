@@ -1,3 +1,4 @@
+export const DEFAULT_USER_PIC_URL: string = 'https://picsum.photos/200'
 export class User {
 
     private _firstName: string
@@ -17,7 +18,7 @@ export class User {
         this._lastName = lastName
         this._password = password
         this._id = id
-        this._profilePicUrl = profilePicUrl || 'https://picsum.photos/200'
+        this._profilePicUrl = profilePicUrl || DEFAULT_USER_PIC_URL
     }
 
     // ---------- accessors
