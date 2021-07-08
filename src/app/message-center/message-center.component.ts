@@ -119,6 +119,7 @@ export class MessageCenterComponent implements OnInit, AfterViewInit {
     public readMessage(message: Message): void {
         this.currentMessage = message
         this._writingNewMessage = false
+        this.messageService.setMessageRead(message, true)
     }
 
     /**

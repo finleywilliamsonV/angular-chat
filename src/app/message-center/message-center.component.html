@@ -33,6 +33,7 @@
                     [message]="message"
                     [messageView]="collectionTypeViewing"
                     [firstItem]="i != 0"
+                    [active]="message === currentMessage"
                     (click)="readMessage(message)">
                 </inbox-item>
 

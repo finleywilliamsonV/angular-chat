@@ -1,0 +1,14 @@
+
+@use 'base';
+
+.fas.fa-envelope {
+    color: base.$tangerine;
+}
+
+.far.fa-envelope-open {
+    color: base.$gunmetal;
+}
+
+div.active {
+    background-color: base.$tangerine-lightest;
+}

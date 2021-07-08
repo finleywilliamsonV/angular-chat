@@ -1,5 +1,4 @@
 import { MessageViewOption } from './../../shared/services/message.service';
-import { User } from './../../shared/objects/user';
 import { Message } from './../../shared/objects/message';
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -19,6 +18,9 @@ export class InboxItemComponent implements OnInit {
 
     @Input('firstItem')
     public firstItem: boolean
+
+    @Input('active')
+    public active: boolean
 
     /**
      * Constructor

@@ -1,6 +1,11 @@
 <div
     class="container-fluid border-gunmetal p-2"
-    [class.remove-top-border]="firstItem">
+    [class.remove-top-border]="firstItem"
+    [class.active]="active">
+    <div class="text-align-right">
+        <i *ngIf="!message.isRead" class="fas fa-envelope"></i>
+        <i *ngIf="message.isRead" class="far fa-envelope-open"></i>
+    </div>
     <p
         class="h5 overflow-ellipses mb-0"
         [class.italic]="messageView === 'sent'">

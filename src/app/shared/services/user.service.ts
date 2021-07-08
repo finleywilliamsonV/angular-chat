@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { GlobalVariableService } from './global-variable.service';
 import { Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -24,7 +25,8 @@ export class UserService {
      * @param globalVariableService 
      */
     constructor(
-        private globalVariableService: GlobalVariableService
+        private globalVariableService: GlobalVariableService,
+        private authService: AuthService
     ) {
         this._users = []
         this.usersChanged = new Subject<User[]>()
@@ -38,6 +40,8 @@ export class UserService {
             'McPeason',
             DEFAULT_USER_PASSWORD
         )
+
+        this.authService.authorizeUser(this.users[0], DEFAULT_USER_PASSWORD)
     }
 
     /**

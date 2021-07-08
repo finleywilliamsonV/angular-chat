@@ -69,7 +69,7 @@ export class MessageService {
             return b.epochSeconds - a.epochSeconds
         })
 
-        this.messagesChanged.next(this.messages)
+        this.notifyMessagesChanged()
     }
 
     /**
@@ -88,6 +88,21 @@ export class MessageService {
      */
     public getMessagesReceivedByUser(user: User): Message[] {
         return this.messages.filter(message => message.recipient === user)
+    }
+
+    /**
+     * Marks the message as read / unread
+     */
+    public setMessageRead(message: Message, tf: boolean): void {
+        message.isRead = tf
+        this.notifyMessagesChanged()
+    }
+
+    /**
+     * Notifies subscribers that messages have changed
+     */
+    private notifyMessagesChanged(): void {
+        this.messagesChanged.next(this.messages)
     }
 
     /**
