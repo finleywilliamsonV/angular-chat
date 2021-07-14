@@ -1,20 +1,33 @@
 <div
-    class="container-fluid border-gunmetal p-2"
-    [class.remove-top-border]="firstItem"
-    [class.active]="active">
-    <div class="text-align-right">
-        <i *ngIf="!message.isRead" class="fas fa-envelope"></i>
-        <i *ngIf="message.isRead" class="far fa-envelope-open"></i>
-    </div>
-    <p
-        class="h5 overflow-ellipses mb-0"
-        [class.italic]="messageView === 'sent'">
-        <span *ngIf="messageView === 'sent'">To: </span>
+	class="container-fluid border-gunmetal p-2"
+	[class.remove-top-border]="firstItem"
+	[class.active]="active">
+
+	<!-- Icon for read/unread -->
+	<div
+        [hideAndRetainSpace]="messageView ==='sent'"
+		class="text-align-right">
+		<i
+			*ngIf="!message.isRead"
+			class="fas fa-envelope"></i>
+		<i
+			*ngIf="message.isRead"
+			class="far fa-envelope-open"></i>
+	</div>
+
+	<!-- Sender/Recipient -->
+	<p
+		class="h5 overflow-ellipses mb-0"
+		[class.italic]="messageView === 'sent'">
+        		<span *ngIf="messageView === 'sent'">To: </span>
         {{ messageView === 'received' ? message.sender.name_lastFirst : message.recipient.name_lastFirst }}
     </p>
-    <div class="ml-2 mt-2">
-        <p class="overflow-ellipses mb-0 bold">{{ message.subject }}</p>
-        <p class="italic overflow-ellipses mb-0">{{ message.body }}</p>
-        <p class="mb-0 mt-2 text-align-right">{{ message.dateString_full }}</p>
-    </div>
+
+	<!-- Subject, Body, Date -->
+	<div class="ml-2 mt-2">
+		<p class="overflow-ellipses mb-0 bold">{{ message.subject }}</p>
+		<p class="italic overflow-ellipses mb-0">{{ message.body }}</p>
+		<p class="mb-0 mt-2 text-align-right">
+            {{ message.dateString_full }}</p>
+	</div>
 </div>
