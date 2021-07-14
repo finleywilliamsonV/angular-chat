@@ -5,7 +5,7 @@
 
 	<!-- Icon for read/unread -->
 	<div
-        [hideAndRetainSpace]="messageView ==='sent'"
+		[hideAndRetainSpace]="messageView ==='sent'"
 		class="text-align-right">
 		<i
 			*ngIf="!message.isRead"
@@ -19,7 +19,7 @@
 	<p
 		class="h5 overflow-ellipses mb-0"
 		[class.italic]="messageView === 'sent'">
-        		<span *ngIf="messageView === 'sent'">To: </span>
+        <span *ngIf="messageView === 'sent'">To: </span>
         {{ messageView === 'received' ? message.sender.name_lastFirst : message.recipient.name_lastFirst }}
     </p>
 

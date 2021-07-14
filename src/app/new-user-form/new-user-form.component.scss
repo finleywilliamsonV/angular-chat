@@ -1,8 +1,10 @@
 @use 'base';
 
 .panel-title a {
+    color: #000;
     &:hover {
-        color: base.$blue;
+        text-decoration: none;
+        color: base.$emerald;
         cursor: pointer;
     }
 }

@@ -3,14 +3,24 @@
 
 		<div *ngIf="usersFetched; else loading_icon">
 
-            <!-- welcome string -->
-		    <h1 class="display-3">{{ welcomeString }}</h1>
+			<!-- welcome string -->
+			<h1
+				class="display-3"
+				*ngIf="authorizedUser">
+                Welcome, <span class="green">{{authorizedUser.firstName}}</span>!
+            </h1>
 
-            <!-- user count -->
+			<h1
+				class="display-3"
+				*ngIf="!authorizedUser">
+                Welcome!
+            </h1>
+
+			<!-- user count -->
 			<p class="lead">{{ userCountString }}</p>
 			<hr class="my-2">
 
-            <!-- user display -->
+			<!-- user display -->
 			<div class="row">
 				<div
 					*ngFor="let user of users"
@@ -18,13 +28,13 @@
 					<user-tile [user]="user"></user-tile>
 				</div>
 			</div>
-            
+
 			<hr>
 
-            <!-- create new user button -->
+			<!-- create new user button -->
 			<p class="lead">
-                <a
-					class="btn btn-dark btn-lg"
+                				<a
+					class="btn btn-success btn-lg"
 					routerLink="/user/new"
 					role="button">
 					Create a New User
@@ -32,9 +42,9 @@
             </p>
 		</div>
 
-        <!-- loading icon template -->
-        <ng-template #loading_icon>
-            <loading-icon [loading]="!usersFetched"></loading-icon>
-        </ng-template>
+		<!-- loading icon template -->
+		<ng-template #loading_icon>
+			<loading-icon [loading]="!usersFetched"></loading-icon>
+		</ng-template>
 	</div>
 </div>
