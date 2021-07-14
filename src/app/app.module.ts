@@ -25,6 +25,7 @@ import { UserTileComponent } from './shared/display/user-tile/user-tile.componen
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { XOrCheckComponent } from './shared/display/x-or-check/x-or-check.component';
 import { LoadingIconComponent } from './shared/components/loading-icon/loading-icon.component';
+import { ProfilePicComponent } from './shared/components/profile-pic/profile-pic.component';
 
 @NgModule({
     declarations: [
@@ -46,7 +47,8 @@ import { LoadingIconComponent } from './shared/components/loading-icon/loading-i
         InboxItemComponent,
         MessageItemComponent,
         NewMessageFormComponent,
-        LoadingIconComponent
+        LoadingIconComponent,
+        ProfilePicComponent
     ],
     imports: [
         BrowserModule,

@@ -1,18 +1,18 @@
 <nav class="navbar nabbar-dark bg-dark">
-    <a
-        routerLink="/home"
-        class="navbar-brand h1 white tangerine-hover">
-        NorbedoChat
-    </a>
+	<a
+		routerLink="/home"
+		class="navbar-brand h1 white tangerine-hover">
+		NorbedoChat
+	</a>
 
-    <div
-        *ngIf="authorizedUser"
-        class="float-right white">
-        {{authorizedUser.name_full}}
-        <a
-            (click)="logOutUser()"
-            class="tangerine-hover">
-            (Log Out)
-        </a>
-    </div>
+	<div
+		*ngIf="authorizedUser"
+		class="float-right white">
+		{{authorizedUser.name_full}}
+		<a
+			(click)="logOutUser()"
+			class="tangerine-hover">
+			(Log Out)
+		</a>
+	</div>
 </nav>

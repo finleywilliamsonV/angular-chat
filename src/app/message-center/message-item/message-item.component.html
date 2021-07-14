@@ -7,5 +7,7 @@
         {{ messageView === 'sent' ? 'To: ' : 'From: '}}
         {{ messageView === 'sent' ? message.recipient.name_lastFirst : message.sender.name_lastFirst }}
     </p>
-    <p class="preserve-new-lines mt-4">{{ message.body }}</p>
+    <div [style.margin]="'0px 20px'">
+        <p class="preserve-new-lines mt-4">{{ message.body }}</p>
+    </div>
 </div>

@@ -1,28 +1,41 @@
 <div
-    class="card"
-    [ngClass]="currentUserAuthorized ? 'logged-in' : 'logged-out'">
-    <i
-        class="fas fa-user fa-3x card-img-top"
-        [ngClass]="currentUserAuthorized ? 'logged-in' : 'logged-out'"></i>
-    <div class="card-body">
-        <h5 class="card-title">{{user.name_full}}</h5>
+	class="card"
+	[ngClass]="currentUserAuthorized ? 'logged-in' : 'logged-out'">
 
-        <!-- Log In Button -->
-        <button
-            class="btn btn-dark"
-            *ngIf="!currentUserAuthorized"
-            (click)="openLoginModal()">
-            <i class="fas fa-sign-in-alt"></i>
-            Log In
-        </button>
+	<div class="card-img-top">
+		<i
+			*ngIf="!user.profilePicUrl; else profile_pic"
+			class="fas fa-user fa-3x"
+			[ngClass]="currentUserAuthorized ? 'logged-in' : 'logged-out'"></i>
 
-        <!-- Message Center Button -->
-        <button
-            class="btn btn-tangerine"
-            *ngIf="currentUserAuthorized"
-            (click)="goToMessageCenter()">
-            <i class="far fa-envelope"></i>
-            Message Center
-        </button>
-    </div>
+		<ng-template #profile_pic>
+			<profile-pic
+				[user]="user"
+				[diameter]="100"
+				[borderThickness]="2"
+				[active]="currentUserAuthorized"></profile-pic>
+		</ng-template>
+	</div>
+
+	<div class="card-body">
+		<h5 class="card-title">{{ user.name_full }}</h5>
+
+		<!-- Log In Button -->
+		<button
+			class="btn btn-dark"
+			*ngIf="!currentUserAuthorized"
+			(click)="openLoginModal()">
+			<i class="fas fa-sign-in-alt"></i>
+			Log In
+		</button>
+
+		<!-- Message Center Button -->
+		<button
+			class="btn btn-tangerine"
+			*ngIf="currentUserAuthorized"
+			(click)="goToMessageCenter()">
+			<i class="far fa-envelope"></i>
+			Message Center
+		</button>
+	</div>
 </div>
