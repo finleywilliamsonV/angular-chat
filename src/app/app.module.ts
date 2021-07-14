@@ -24,6 +24,7 @@ import { SpinnerComponent } from './shared/display/spinner/spinner.component';
 import { UserTileComponent } from './shared/display/user-tile/user-tile.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { XOrCheckComponent } from './shared/display/x-or-check/x-or-check.component';
+import { LoadingIconComponent } from './shared/components/loading-icon/loading-icon.component';
 
 @NgModule({
     declarations: [
@@ -44,7 +45,8 @@ import { XOrCheckComponent } from './shared/display/x-or-check/x-or-check.compon
         MessageCenterComponent,
         InboxItemComponent,
         MessageItemComponent,
-        NewMessageFormComponent
+        NewMessageFormComponent,
+        LoadingIconComponent
     ],
     imports: [
         BrowserModule,

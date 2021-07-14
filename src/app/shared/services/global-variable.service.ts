@@ -5,6 +5,7 @@ export type DefaultUserName = {
     lastName: string
 }
 
+export const TEST_MODE: boolean = true
 @Injectable({
     providedIn: 'root'
 })

@@ -21,6 +21,7 @@ export class WelcomePageComponent implements OnInit {
     private usersChangedSub: Subscription
     public authorizedUser: User
     private userAuthorizationSub: Subscription
+    public usersFetched: boolean
 
     /**
      * Constuctor
@@ -39,9 +40,12 @@ export class WelcomePageComponent implements OnInit {
      */
     public ngOnInit(): void {
 
+        this.usersFetched = false
+
         // get the current users
-        if (this.userService.users) {
+        if (this.userService.users.length > 0) {
             this.users = this.userService.users
+            this.usersFetched = true
         }
 
         // get the currently authorized user
@@ -53,6 +57,7 @@ export class WelcomePageComponent implements OnInit {
         this.usersChangedSub = this.userService.usersChanged.subscribe(
             (newUsers: User[]) => {
                 this.users = newUsers
+                this.usersFetched = true
             }
         )
 

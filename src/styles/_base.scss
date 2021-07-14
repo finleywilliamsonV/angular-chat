@@ -67,10 +67,12 @@ $primary: $tangerine-light;
 .btn-tangerine {
     @include button-variant(
         $tangerine-light,
-        darken($tangerine-light, 7.5%),
-        darken($tangerine-light, 10%),
-        lighten($tangerine-light, 5%),
-        lighten($tangerine-light, 10%),
-        darken($tangerine-light, 30%)
+        $tangerine,
     );
+}
+
+.btn-outline-tangerine {
+    @include button-outline-variant(
+        $tangerine-light
+    )
 }

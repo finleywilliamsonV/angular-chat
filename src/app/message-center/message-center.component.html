@@ -48,7 +48,7 @@
 
                 <!-- new message button -->
                 <button
-                    class="btn btn-primary"
+                    class="btn btn-tangerine"
                     *ngIf="!writingNewMessage"
                     (click)="writingNewMessage = true">
                     <i class="far fa-envelope mr-1"></i>
@@ -57,7 +57,7 @@
 
                 <!-- send message button -->
                 <button
-                    class="btn btn-primary"
+                    class="btn btn-tangerine"
                     *ngIf="writingNewMessage"
                     (click)="submitNewMessage()"
                     [disabled]="!newMessageFormIsValid()">

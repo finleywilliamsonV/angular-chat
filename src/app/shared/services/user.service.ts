@@ -1,5 +1,5 @@
 import { AuthService } from './auth.service';
-import { GlobalVariableService } from './global-variable.service';
+import { GlobalVariableService, TEST_MODE } from './global-variable.service';
 import { Observable, Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { DEFAULT_USER_PIC_URL, User } from '../objects/user';
@@ -19,7 +19,7 @@ export const USER_NOT_FOUND: User = new User(
 )
 
 // export type FirestoreUser = {
-//     [prop in keyof Pick<User, 'firstName' | 'lastName' | 'password' | 'id' | 'profilePicUrl'>as `_${prop}`]: User[prop]
+//     [prop in keyof Pick<User, 'firstName' | 'lastName' | 'password' | 'id' | 'profilePicUrl'> as `_${prop}`]: User[prop]
 // }
 
 export type FirestoreUser = {
@@ -77,7 +77,7 @@ export class UserService {
                 this.usersChanged.next(this._users)
                 
                 // authorize the first user
-                if (this._users.length > 0 && !this.userAuthorized) {
+                if (TEST_MODE && this._users.length > 0 && !this.userAuthorized) {
                     console.log('users:', this._users)
                     await this.authService.authorizeUser(this.users[0], DEFAULT_USER_PASSWORD)
                     this.userAuthorized = true
