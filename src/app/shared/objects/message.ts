@@ -69,7 +69,7 @@ export class Message {
      * Gets the full date string
      */
     public get dateString_full(): string {
-        return format(this._dateSent_date, "E',' MMMM do',' yyyy")
+        return format(this._dateSent_date, "E',' P p")
     }
 
     /**
