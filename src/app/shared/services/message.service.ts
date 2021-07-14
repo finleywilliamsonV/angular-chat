@@ -152,7 +152,7 @@ export class MessageService {
                             subject: message.subject,
                             body: message.body,
                             isRead: message.isRead,
-                            dateSent: message.dateSent,
+                            dateSent: message.epochSeconds,
                             id: message.id
                         })
                 }
