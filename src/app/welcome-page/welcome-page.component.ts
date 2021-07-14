@@ -1,10 +1,7 @@
-import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthService } from './../shared/services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { CUPCAKE_IPSUM, HIPSTER_IPSUM, LOREM_IPSUM, MessageService } from './../shared/services/message.service';
-import { DEFAULT_USER_PASSWORD, UserService } from './../shared/services/user.service';
-import { map } from 'rxjs/operators';
-import { Message } from './../shared/objects/message';
+import { MessageService } from './../shared/services/message.service';
+import { UserService } from './../shared/services/user.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { User } from 'app/shared/objects/user';
@@ -24,7 +21,6 @@ export class WelcomePageComponent implements OnInit {
     private usersChangedSub: Subscription
     public authorizedUser: User
     private userAuthorizationSub: Subscription
-    private initialized: boolean
 
     /**
      * Constuctor
