@@ -43,6 +43,11 @@ export class WelcomePageComponent implements OnInit {
      */
     public ngOnInit(): void {
 
+        // get the current users
+        if (this.userService.users) {
+            this.users = this.userService.users
+        }
+
         // get the currently authorized user
         if (this.authService.authorizedUser) {
             this.authorizedUser = this.authService.authorizedUser
