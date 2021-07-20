@@ -1,5 +1,5 @@
 import { User } from "./user"
-import * as moment from 'moment'
+import { format } from 'date-fns'
 
 /**
  * Message Class
@@ -12,7 +12,8 @@ export class Message {
     private _subject: string
     private _body: string
     private _isRead: boolean
-    private _dateSent: moment.Moment
+    private _dateSent_epoch: number
+    private _dateSent_date: Date
     private _id: number
 
     /**
@@ -23,14 +24,17 @@ export class Message {
         recipient: User,
         subject: string,
         body: string,
+        isRead: boolean,
+        dateSent: number,
         id: number
     ) {
         this._sender = sender
         this._recipient = recipient
         this._subject = subject
         this._body = body
-        this._isRead = false
-        this._dateSent = moment()
+        this._isRead = isRead
+        this._dateSent_epoch = dateSent
+        this._dateSent_date = new Date(this._dateSent_epoch)
         this._id = id
     }
 
@@ -53,6 +57,9 @@ export class Message {
     public set isRead(tf: boolean) {
         this._isRead = tf
     }
+    public get dateSent(): Date {
+        return this._dateSent_date
+    }
     public get id(): number {
         return this._id
     }
@@ -62,20 +69,20 @@ export class Message {
      * Gets the full date string
      */
     public get dateString_full(): string {
-        return this._dateSent.format('ddd, M/D/YY - h:mm A')
+        return format(this._dateSent_date, "E',' P p")
     }
 
     /**
      * Gets the month/day date string
      */
     public get dateString_monthDay(): string {
-        return this._dateSent.format('M/D')
+        return format(this._dateSent_date, "M/d")
     }
 
     /**
      * Gets the epoch seconds
      */
     public get epochSeconds(): number {
-        return this._dateSent.unix()
+        return this._dateSent_epoch
     }
 }

@@ -1,0 +1,13 @@
+<div
+	[style.width]="diameter + (2 * borderThickness) + 'px'"
+	[style.height]="diameter + (2 * borderThickness) + 'px'"
+	[style.background]="active ? $tangerine : 'black'">
+
+	<img
+		[style.top]="borderThickness + 'px'"
+        [style.left]="borderThickness + 'px'"
+        [style.width]="diameter + 'px'"
+	    [style.height]="diameter + 'px'"
+		[src]="profilePicUrl"
+		[alt]="altText">
+</div>

@@ -1,11 +1,10 @@
-import { CUPCAKE_IPSUM, HIPSTER_IPSUM, LOREM_IPSUM, MessageService } from './../shared/services/message.service';
-import { Message } from './../shared/objects/message';
-import { Router } from '@angular/router';
 import { AuthService } from './../shared/services/auth.service';
-import { UserService, DEFAULT_USER_PASSWORD } from './../shared/services/user.service';
 import { Component, OnInit } from '@angular/core';
-import { User } from 'app/shared/objects/user';
+import { MessageService } from './../shared/services/message.service';
+import { UserService } from './../shared/services/user.service';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { User } from 'app/shared/objects/user';
 
 /**
  * Welcome Page Component Class
@@ -22,7 +21,7 @@ export class WelcomePageComponent implements OnInit {
     private usersChangedSub: Subscription
     public authorizedUser: User
     private userAuthorizationSub: Subscription
-    private initialized: boolean
+    public usersFetched: boolean
 
     /**
      * Constuctor
@@ -41,8 +40,13 @@ export class WelcomePageComponent implements OnInit {
      */
     public ngOnInit(): void {
 
-        // get the users
-        this.users = this.userService.users
+        this.usersFetched = false
+
+        // get the current users
+        if (this.userService.users.length > 0) {
+            this.users = this.userService.users
+            this.usersFetched = true
+        }
 
         // get the currently authorized user
         if (this.authService.authorizedUser) {
@@ -53,6 +57,7 @@ export class WelcomePageComponent implements OnInit {
         this.usersChangedSub = this.userService.usersChanged.subscribe(
             (newUsers: User[]) => {
                 this.users = newUsers
+                this.usersFetched = true
             }
         )
 
@@ -81,12 +86,12 @@ export class WelcomePageComponent implements OnInit {
      * @returns string
      */
     public get userCountString(): string {
-        if (this.users.length === 0) {
-            return 'No Users Found'
-        } else if (this.users.length === 1) {
+        if (this.users?.length > 1) {
+            return `${this.users.length} Users Found`
+        } else if (this.users?.length === 1) {
             return '1 User Found'
         } else {
-            return `${this.users.length} Users Found`
+            return 'No Users Found'
         }
     }
 }

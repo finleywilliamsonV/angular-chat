@@ -1,30 +1,30 @@
-$lilac: #c8a2c8;
 $gunmetal: #343a40;
 $slate: #6e7a87;
 $lightestGray: #d4d4d4;
 $tangerine: #eb9486;
 $tangerine-light: #ffafa2;
 $tangerine-lightest: #ffcfc7;
-$blue: #007bff;
-$lightBlue: #5aaaff;
-$lightestBlue: #9acbff;
+$emerald: #2F7560;
+$burgundy: #990D35;
 
 $primary: $tangerine-light;
+$success: $emerald;
+$danger: $burgundy;
+
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
 
 .green {
-    color: green;
+    color: $emerald;
 }
 
 .red {
-    color: red;
+    color: $burgundy;
 }
 
 .white {
     color: white;
 }
-
-/* Importing Bootstrap SCSS file. */
-@import "~bootstrap/scss/bootstrap";
 
 .border-gunmetal {
     border: 1px solid rebeccapurple;
@@ -67,10 +67,19 @@ $primary: $tangerine-light;
 .btn-tangerine {
     @include button-variant(
         $tangerine-light,
-        darken($tangerine-light, 7.5%),
-        darken($tangerine-light, 10%),
-        lighten($tangerine-light, 5%),
-        lighten($tangerine-light, 10%),
-        darken($tangerine-light, 30%)
+        $tangerine,
     );
+}
+
+.btn-outline-tangerine {
+    @include button-outline-variant(
+        $tangerine-light
+    )
+}
+
+.btn-emerald {
+    @include button-variant(
+        lighten($emerald, 30),
+        $emerald
+    )
 }

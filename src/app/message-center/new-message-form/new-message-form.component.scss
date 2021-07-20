@@ -4,7 +4,7 @@
     color: gray;
 
     &:hover {
-        color: red;
+        color: base.$burgundy;
         cursor: pointer;
     }
 }
@@ -15,7 +15,7 @@
 
     a {
         &:hover {
-            color: base.$blue;
+            color: base.$emerald;
         }
     }
 }

@@ -1,0 +1,11 @@
+div {
+    display:inline-block;
+	position:relative;
+	box-sizing:border-box;
+	clip-path:circle();
+}
+
+img {
+    position: absolute;
+    clip-path: circle();
+}
